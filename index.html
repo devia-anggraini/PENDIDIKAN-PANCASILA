@@ -1,291 +1,4392 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tugas PPKN - Pancasila & Pengamalannya</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        
-        /* Animasi KEKINIAN & Custom Glow */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        /* Glassmorphism Effect */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PANCASILA — Interactive PPKn Project</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:#f6f3eb;
+    color:#111;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+}
+
+img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+
+    --red:#e50932;
+    --red2:#a80528;
+
+    --yellow:#ffbd17;
+    --orange:#ff7317;
+
+    --green:#19a66c;
+    --blue:#287cff;
+
+    --cream:#f6f3eb;
+
+    --dark:#080a0f;
+    --dark2:#11141b;
+
+    --gray:#777;
+
+    --radius:28px;
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#090a0e;
+
+    z-index:99999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    transition:1s;
+
+}
+
+.loader.hide{
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+.loader-inner{
+
+    text-align:center;
+
+}
+
+.loader-logo{
+
+    font-family:"Space Grotesk";
+
+    font-size:55px;
+
+    font-weight:800;
+
+    letter-spacing:-4px;
+
+}
+
+.loader-logo span{
+
+    color:var(--red);
+
+}
+
+.loader-line{
+
+    width:200px;
+
+    height:2px;
+
+    background:#333;
+
+    margin:25px auto;
+
+    overflow:hidden;
+
+}
+
+.loader-line div{
+
+    width:0;
+
+    height:100%;
+
+    background:var(--red);
+
+    animation:loading 1.5s forwards;
+
+}
+
+@keyframes loading{
+
+    to{
+        width:100%;
+    }
+
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.bg{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-5;
+
+    overflow:hidden;
+
+}
+
+.orb{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    opacity:.12;
+
+}
+
+.orb.one{
+
+    width:500px;
+    height:500px;
+
+    background:var(--red);
+
+    left:-250px;
+    top:-250px;
+}
+
+.orb.two{
+
+    width:450px;
+    height:450px;
+
+    background:var(--yellow);
+
+    right:-200px;
+    top:30%;
+}
+
+.orb.three{
+
+    width:500px;
+    height:500px;
+
+    background:var(--blue);
+
+    bottom:-300px;
+    left:30%;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+
+    position:fixed;
+
+    top:18px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(1200px,calc(100% - 35px));
+
+    height:70px;
+
+    padding:0 22px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:rgba(255,255,255,.78);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(0,0,0,.08);
+
+    border-radius:100px;
+
+    z-index:5000;
+
+    transition:.3s;
+
+}
+
+.navbar.scrolled{
+
+    top:10px;
+
+    box-shadow:0 15px 50px rgba(0,0,0,.1);
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.logo-circle{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    background:var(--red);
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+}
+
+.logo-text strong{
+
+    display:block;
+
+    font-family:"Space Grotesk";
+
+    font-size:13px;
+
+}
+
+.logo-text small{
+
+    font-size:7px;
+
+    letter-spacing:2px;
+
+    color:#888;
+
+}
+
+.nav-links{
+
+    display:flex;
+
+    gap:28px;
+
+}
+
+.nav-links a{
+
+    font-size:11px;
+
+    font-weight:600;
+
+    color:#777;
+
+    transition:.3s;
+
+}
+
+.nav-links a:hover{
+
+    color:var(--red);
+
+}
+
+.menu{
+
+    display:none;
+
+    border:0;
+
+    background:#111;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+}
+
+.menu span{
+
+    display:block;
+
+    width:18px;
+
+    height:2px;
+
+    background:white;
+
+    margin:4px auto;
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu{
+
+    position:fixed;
+
+    top:100px;
+
+    left:15px;
+
+    right:15px;
+
+    background:#111;
+
+    color:white;
+
+    border-radius:25px;
+
+    padding:20px;
+
+    z-index:4999;
+
+    display:none;
+
+}
+
+.mobile-menu.open{
+
+    display:block;
+
+}
+
+.mobile-menu a{
+
+    display:block;
+
+    padding:15px;
+
+    border-bottom:1px solid #292929;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    min-height:100vh;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:120px 8% 70px;
+
+    overflow:hidden;
+
+}
+
+.grid{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+    linear-gradient(rgba(0,0,0,.035) 1px,transparent 1px),
+
+    linear-gradient(90deg,rgba(0,0,0,.035) 1px,transparent 1px);
+
+    background-size:50px 50px;
+
+    mask-image:linear-gradient(to bottom,black,transparent);
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    width:62%;
+
+}
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:9px 14px;
+
+    border-radius:100px;
+
+    background:white;
+
+    border:1px solid #ddd;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+}
+
+.dot{
+
+    width:7px;
+
+    height:7px;
+
+    background:var(--red);
+
+    border-radius:50%;
+
+    box-shadow:0 0 0 5px rgba(229,9,50,.1);
+
+}
+
+.hero h1{
+
+    margin-top:25px;
+
+    font-family:"Space Grotesk";
+
+    font-size:clamp(65px,9vw,145px);
+
+    line-height:.78;
+
+    letter-spacing:-9px;
+
+}
+
+.hero h1 span{
+
+    display:block;
+
+    color:var(--red);
+
+}
+
+.hero h1 strong{
+
+    display:block;
+
+    color:transparent;
+
+    -webkit-text-stroke:2px #111;
+
+}
+
+.hero-text{
+
+    max-width:480px;
+
+    margin-top:35px;
+
+    color:#707070;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:30px;
+
+}
+
+.btn{
+
+    padding:15px 22px;
+
+    border-radius:100px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.btn-main{
+
+    background:var(--red);
+
+    color:white;
+
+    box-shadow:0 15px 35px rgba(229,9,50,.2);
+
+}
+
+.btn-main:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.btn-light{
+
+    border:1px solid #ccc;
+
+    background:white;
+
+}
+
+.btn-light:hover{
+
+    background:#111;
+
+    color:white;
+
+}
+
+
+/* =========================================================
+   GARUDA
+========================================================= */
+
+.garuda{
+
+    position:absolute;
+
+    right:8%;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:340px;
+
+    height:440px;
+
+    border-radius:180px 180px 35px 35px;
+
+    background:linear-gradient(145deg,#fff,#e7e3d8);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:0 40px 90px rgba(0,0,0,.15);
+
+    animation:float 5s ease-in-out infinite;
+
+}
+
+.garuda::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:230px;
+
+    height:230px;
+
+    border-radius:50%;
+
+    background:var(--yellow);
+
+    filter:blur(70px);
+
+    opacity:.5;
+
+}
+
+.garuda img{
+
+    position:relative;
+
+    width:230px;
+
+    height:230px;
+
+    object-fit:contain;
+
+    filter:drop-shadow(0 20px 20px rgba(0,0,0,.2));
+
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(-50%);
+    }
+
+    50%{
+        transform:translateY(calc(-50% - 13px));
+    }
+
+}
+
+.garuda-info{
+
+    position:absolute;
+
+    bottom:20px;
+
+    left:25px;
+
+    right:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    color:#888;
+
+}
+
+.garuda-info div{
+
+    flex:1;
+
+    height:1px;
+
+    background:#ccc;
+
+}
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+.scroll{
+
+    position:absolute;
+
+    bottom:35px;
+
+    left:8%;
+
+    font-size:8px;
+
+    letter-spacing:3px;
+
+    color:#999;
+
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro{
+
+    padding:150px 8%;
+
+    background:#0d1016;
+
+    color:white;
+
+}
+
+.label{
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    color:#777;
+
+}
+
+.label span{
+
+    color:var(--red);
+
+    margin-right:12px;
+
+}
+
+.intro-content{
+
+    margin-top:70px;
+
+    display:grid;
+
+    grid-template-columns:1.2fr .8fr;
+
+    gap:100px;
+
+}
+
+.intro h2{
+
+    font-family:"Space Grotesk";
+
+    font-size:clamp(50px,7vw,100px);
+
+    line-height:.85;
+
+    letter-spacing:-6px;
+
+}
+
+.intro h2 span{
+
+    color:#777;
+
+}
+
+.intro-text{
+
+    color:#999;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+.intro-text p{
+
+    margin-bottom:25px;
+
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    background:var(--red);
+
+    color:white;
+
+    padding:50px 8%;
+
+}
+
+.stat{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:15px 30px;
+
+    border-right:1px solid rgba(255,255,255,.3);
+
+}
+
+.stat:last-child{
+
+    border:0;
+
+}
+
+.stat-number{
+
+    font-family:"Space Grotesk";
+
+    font-size:65px;
+
+}
+
+.stat strong{
+
+    display:block;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+}
+
+.stat small{
+
+    display:block;
+
+    font-size:9px;
+
+    opacity:.7;
+
+    margin-top:4px;
+
+}
+
+
+/* =========================================================
+   SILA
+========================================================= */
+
+.sila-section{
+
+    padding:150px 8%;
+
+}
+
+.sila-heading{
+
+    margin-top:55px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+}
+
+.sila-heading h2{
+
+    font-family:"Space Grotesk";
+
+    font-size:clamp(60px,8vw,110px);
+
+    line-height:.8;
+
+    letter-spacing:-7px;
+
+}
+
+.sila-heading h2 span{
+
+    color:#aaa;
+
+}
+
+.sila-heading p{
+
+    width:280px;
+
+    font-size:12px;
+
+    color:#777;
+
+    line-height:1.7;
+
+}
+
+
+/* =========================================================
+   SILA TABS
+========================================================= */
+
+.tabs{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:70px;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+
+}
+
+.tabs::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.tab{
+
+    flex-shrink:0;
+
+    border:1px solid #ddd;
+
+    background:white;
+
+    border-radius:100px;
+
+    padding:13px 18px;
+
+    cursor:pointer;
+
+    font-size:10px;
+
+    color:#777;
+
+    transition:.3s;
+
+}
+
+.tab span{
+
+    color:var(--red);
+
+    font-weight:800;
+
+    margin-right:7px;
+
+}
+
+.tab.active{
+
+    background:#111;
+
+    color:white;
+
+    border-color:#111;
+
+}
+
+
+/* =========================================================
+   SILA CARD
+========================================================= */
+
+.sila-card{
+
+    margin-top:20px;
+
+    background:white;
+
+    border:1px solid #e3e0d8;
+
+    border-radius:30px;
+
+    padding:40px;
+
+    display:none;
+
+    grid-template-columns:90px 1fr 330px;
+
+    gap:30px;
+
+    box-shadow:0 30px 80px rgba(0,0,0,.06);
+
+    animation:showCard .5s;
+
+}
+
+.sila-card.active{
+
+    display:grid;
+
+}
+
+@keyframes showCard{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.sila-no{
+
+    font-family:"Space Grotesk";
+
+    font-size:75px;
+
+    color:#ddd;
+
+}
+
+.sila-main{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.sila-icon{
+
+    width:50px;
+
+    height:50px;
+
+    flex-shrink:0;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-size:20px;
+
+}
+
+.red{background:var(--red)}
+.yellow{background:var(--yellow)}
+.orange{background:var(--orange)}
+.green{background:var(--green)}
+.blue{background:var(--blue)}
+
+.sila-main small{
+
+    color:#aaa;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    font-weight:800;
+
+}
+
+.sila-main h3{
+
+    margin-top:9px;
+
+    font-family:"Space Grotesk";
+
+    font-size:30px;
+
+    line-height:1.1;
+
+}
+
+.sila-main p{
+
+    margin-top:15px;
+
+    color:#777;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+}
+
+.practice{
+
+    grid-column:2;
+
+    border-top:1px solid #eee;
+
+    padding-top:25px;
+
+}
+
+.practice-title{
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    font-weight:800;
+
+    color:#aaa;
+
+}
+
+.practice ul{
+
+    list-style:none;
+
+    margin-top:18px;
+
+}
+
+.practice li{
+
+    position:relative;
+
+    padding-left:20px;
+
+    margin-bottom:12px;
+
+    font-size:12px;
+
+    line-height:1.6;
+
+    color:#555;
+
+}
+
+.practice li::before{
+
+    content:"";
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:var(--red);
+
+    position:absolute;
+
+    left:0;
+
+    top:7px;
+
+}
+
+.sila-photo{
+
+    grid-column:3;
+
+    grid-row:1 / span 2;
+
+    height:350px;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    cursor:pointer;
+
+}
+
+.sila-photo img{
+
+    transition:.5s;
+
+}
+
+.sila-photo:hover img{
+
+    transform:scale(1.07);
+
+}
+
+.photo-tag{
+
+    position:absolute;
+
+    bottom:15px;
+
+    left:15px;
+
+    padding:8px 10px;
+
+    border-radius:8px;
+
+    background:rgba(0,0,0,.7);
+
+    color:white;
+
+    font-size:8px;
+
+}
+
+
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.marquee{
+
+    overflow:hidden;
+
+    background:var(--yellow);
+
+    transform:rotate(-1.3deg) scale(1.02);
+
+    padding:18px 0;
+
+}
+
+.marquee-track{
+
+    display:flex;
+
+    width:max-content;
+
+    align-items:center;
+
+    gap:30px;
+
+    animation:move 25s linear infinite;
+
+}
+
+.marquee span{
+
+    font-family:"Space Grotesk";
+
+    font-size:25px;
+
+    font-weight:700;
+
+}
+
+@keyframes move{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+
+}
+
+
+/* =========================================================
+   ACTIVITIES
+========================================================= */
+
+.activities{
+
+    padding:150px 8%;
+
+    background:#efede6;
+
+}
+
+.activities-heading{
+
+    max-width:800px;
+
+}
+
+.activities-heading h2{
+
+    margin-top:55px;
+
+    font-family:"Space Grotesk";
+
+    font-size:clamp(55px,8vw,105px);
+
+    line-height:.82;
+
+    letter-spacing:-7px;
+
+}
+
+.activities-heading h2 span{
+
+    color:#aaa;
+
+}
+
+.activities-heading p{
+
+    margin-top:25px;
+
+    color:#777;
+
+    font-size:13px;
+
+    max-width:350px;
+
+    line-height:1.7;
+
+}
+
+.activity-grid{
+
+    margin-top:80px;
+
+    display:grid;
+
+    grid-template-columns:1.3fr .7fr;
+
+    gap:15px;
+
+}
+
+.activity{
+
+    height:400px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.activity.big{
+
+    height:815px;
+
+    grid-row:span 2;
+
+}
+
+.activity.wide{
+
+    grid-column:1 / -1;
+
+    height:430px;
+
+}
+
+.activity::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(transparent 35%,rgba(0,0,0,.85));
+
+}
+
+.activity img{
+
+    transition:.7s;
+
+}
+
+.activity:hover img{
+
+    transform:scale(1.07);
+
+}
+
+.activity-info{
+
+    position:absolute;
+
+    left:30px;
+
+    right:30px;
+
+    bottom:30px;
+
+    z-index:2;
+
+    color:white;
+
+}
+
+.activity-info small{
+
+    color:#aaa;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+}
+
+.activity-info h3{
+
+    font-family:"Space Grotesk";
+
+    font-size:30px;
+
+    margin-top:7px;
+
+}
+
+.activity-info p{
+
+    color:#bbb;
+
+    font-size:11px;
+
+    margin-top:7px;
+
+}
+
+
+/* =========================================================
+   TEAM
+========================================================= */
+
+.team{
+
+    padding:150px 8%;
+
+    background:#10131a;
+
+    color:white;
+
+}
+
+.team-heading{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+}
+
+.team-heading h2{
+
+    margin-top:55px;
+
+    font-family:"Space Grotesk";
+
+    font-size:clamp(55px,8vw,105px);
+
+    line-height:.82;
+
+    letter-spacing:-7px;
+
+}
+
+.team-heading h2 span{
+
+    color:#666;
+
+}
+
+.team-heading p{
+
+    color:#777;
+
+    width:270px;
+
+    font-size:12px;
+
+    line-height:1.7;
+
+}
+
+.team-wrapper{
+
+    margin-top:75px;
+
+    position:relative;
+
+}
+
+.team-track{
+
+    display:flex;
+
+    gap:18px;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+
+    scroll-behavior:smooth;
+
+    padding:10px 3px 30px;
+
+}
+
+.team-track::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.member{
+
+    flex:0 0 260px;
+
+    background:#191d25;
+
+    border:1px solid #292e37;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    transition:.4s;
+
+}
+
+.member:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.member-photo{
+
+    height:320px;
+
+    position:relative;
+
+}
+
+.member-photo img{
+
+    transition:.6s;
+
+}
+
+.member:hover img{
+
+    transform:scale(1.05);
+
+}
+
+.member-number{
+
+    position:absolute;
+
+    right:15px;
+
+    top:15px;
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:#111;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:9px;
+
+    font-weight:800;
+
+}
+
+.member-info{
+
+    padding:22px;
+
+}
+
+.member-info small{
+
+    color:var(--yellow);
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+}
+
+.member-info h3{
+
+    font-family:"Space Grotesk";
+
+    margin-top:8px;
+
+    font-size:20px;
+
+}
+
+.member-info p{
+
+    color:#777;
+
+    font-size:10px;
+
+    margin-top:5px;
+
+}
+
+.team-button{
+
+    position:absolute;
+
+    right:0;
+
+    top:-65px;
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    border:1px solid #333;
+
+    background:#191d25;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    transition:.3s;
+
+}
+
+.team-button:hover{
+
+    background:var(--red);
+
+}
+
+.team-button.prev{
+
+    right:55px;
+
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery{
+
+    padding:150px 8%;
+
+}
+
+.gallery-heading h2{
+
+    margin-top:55px;
+
+    font-family:"Space Grotesk";
+
+    font-size:clamp(55px,8vw,105px);
+
+    line-height:.82;
+
+    letter-spacing:-7px;
+
+}
+
+.gallery-heading h2 span{
+
+    color:#aaa;
+
+}
+
+.gallery-grid{
+
+    margin-top:75px;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:10px;
+
+}
+
+.gallery-item{
+
+    height:280px;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    cursor:pointer;
+
+}
+
+.gallery-item.large{
+
+    grid-column:span 2;
+
+    height:500px;
+
+}
+
+.gallery-item.wide{
+
+    grid-column:span 2;
+
+}
+
+.gallery-item img{
+
+    transition:.7s;
+
+}
+
+.gallery-item:hover img{
+
+    transform:scale(1.08);
+
+}
+
+.gallery-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    padding:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    background:linear-gradient(transparent,rgba(0,0,0,.8));
+
+    color:white;
+
+    opacity:0;
+
+    transition:.4s;
+
+}
+
+.gallery-item:hover .gallery-overlay{
+
+    opacity:1;
+
+}
+
+.gallery-overlay span{
+
+    font-size:9px;
+
+}
+
+.gallery-overlay strong{
+
+    font-family:"Space Grotesk";
+
+    font-size:20px;
+
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final{
+
+    min-height:75vh;
+
+    background:linear-gradient(135deg,#a80528,#e50932,#ff7418);
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:100px 8%;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.final::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+
+    height:600px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.12);
+
+    filter:blur(80px);
+
+}
+
+.final-content{
+
+    position:relative;
+
+}
+
+.final small{
+
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    opacity:.7;
+
+}
+
+.final h2{
+
+    margin-top:30px;
+
+    font-family:"Space Grotesk";
+
+    font-size:clamp(65px,10vw,150px);
+
+    line-height:.8;
+
+    letter-spacing:-9px;
+
+}
+
+.final h2 span{
+
+    color:transparent;
+
+    -webkit-text-stroke:2px white;
+
+}
+
+.final p{
+
+    margin:30px auto;
+
+    max-width:400px;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    opacity:.8;
+
+}
+
+.back{
+
+    display:inline-block;
+
+    padding:14px 22px;
+
+    border:1px solid rgba(255,255,255,.5);
+
+    border-radius:100px;
+
+    font-size:10px;
+
+    transition:.3s;
+
+}
+
+.back:hover{
+
+    background:white;
+
+    color:var(--red);
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    padding:35px 8%;
+
+    background:#07080b;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:9px;
+
+}
+
+.footer-logo{
+
+    font-family:"Space Grotesk";
+
+    font-size:15px;
+
+}
+
+.footer-center{
+
+    color:#555;
+
+    letter-spacing:2px;
+
+}
+
+.footer-right{
+
+    color:#555;
+
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(4,5,8,.97);
+
+    z-index:9999;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.lightbox.active{
+
+    display:flex;
+
+}
+
+.lightbox img{
+
+    width:auto;
+
+    max-width:85%;
+
+    max-height:82vh;
+
+    border-radius:15px;
+
+    box-shadow:0 30px 100px rgba(0,0,0,.6);
+
+}
+
+.close{
+
+    position:absolute;
+
+    top:25px;
+
+    right:30px;
+
+    width:50px;
+
+    height:50px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:#222;
+
+    color:white;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+}
+
+.light-btn{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:55px;
+
+    height:55px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:#222;
+
+    color:white;
+
+    font-size:35px;
+
+    cursor:pointer;
+
+}
+
+.light-btn:hover,
+.close:hover{
+
+    background:var(--red);
+
+}
+
+.light-prev{
+
+    left:25px;
+
+}
+
+.light-next{
+
+    right:25px;
+
+}
+
+.counter{
+
+    position:absolute;
+
+    bottom:25px;
+
+    color:#777;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:1s;
+
+}
+
+.reveal.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .hero-content{
+        width:100%;
+    }
+
+    .garuda{
+        opacity:.25;
+        right:-50px;
+    }
+
+    .intro-content{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .sila-card{
+        grid-template-columns:70px 1fr;
+    }
+
+    .sila-photo{
+        grid-column:2;
+        grid-row:auto;
+    }
+
+    .practice{
+        grid-column:2;
+    }
+
+    .activity-grid{
+        grid-template-columns:1fr;
+    }
+
+    .activity.big{
+        height:550px;
+        grid-row:auto;
+    }
+
+    .activity.wide{
+        grid-column:auto;
+    }
+
+    .team-heading{
+        display:block;
+    }
+
+    .team-heading p{
+        margin-top:25px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:650px){
+
+    .navbar{
+        width:calc(100% - 25px);
+        top:12px;
+    }
+
+    .hero{
+        padding:140px 6% 80px;
+    }
+
+    .hero h1{
+        font-size:65px;
+        letter-spacing:-5px;
+    }
+
+    .hero h1 strong{
+        -webkit-text-stroke:1px #111;
+    }
+
+    .garuda{
+        width:220px;
+        height:290px;
+        right:-50px;
+        top:35%;
+    }
+
+    .garuda img{
+        width:150px;
+        height:150px;
+    }
+
+    .scroll{
+        display:none;
+    }
+
+    .intro,
+    .sila-section,
+    .activities,
+    .team,
+    .gallery{
+        padding:90px 6%;
+    }
+
+    .intro-content{
+        margin-top:50px;
+    }
+
+    .intro h2,
+    .sila-heading h2,
+    .activities-heading h2,
+    .team-heading h2,
+    .gallery-heading h2{
+        letter-spacing:-4px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+        padding:30px 6%;
+    }
+
+    .stat{
+        border-right:0;
+        border-bottom:1px solid rgba(255,255,255,.25);
+        padding:20px 0;
+    }
+
+    .sila-heading{
+        display:block;
+        margin-top:40px;
+    }
+
+    .sila-heading p{
+        margin-top:25px;
+    }
+
+    .sila-card{
+        grid-template-columns:1fr;
+        padding:25px;
+    }
+
+    .sila-no{
+        font-size:50px;
+    }
+
+    .sila-main{
+        display:block;
+    }
+
+    .sila-icon{
+        margin-bottom:20px;
+    }
+
+    .sila-main h3{
+        font-size:25px;
+    }
+
+    .practice{
+        grid-column:1;
+    }
+
+    .sila-photo{
+        grid-column:1;
+        height:250px;
+    }
+
+    .activity-grid{
+        margin-top:50px;
+    }
+
+    .activity,
+    .activity.big,
+    .activity.wide{
+        height:380px;
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .gallery-item,
+    .gallery-item.large,
+    .gallery-item.wide{
+        grid-column:span 1;
+        height:220px;
+    }
+
+    .gallery-item.large{
+        height:300px;
+    }
+
+    .gallery-item.wide{
+        grid-column:span 2;
+    }
+
+    .final h2{
+        letter-spacing:-5px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+
+    .lightbox img{
+        max-width:90%;
+    }
+
+    .light-prev{
+        left:8px;
+    }
+
+    .light-next{
+        right:8px;
+    }
+
+}
+
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-white">
 
-    <header class="bg-gradient-to-br from-red-700 via-rose-800 to-amber-700 text-white py-20 px-6 text-center shadow-xl relative overflow-hidden">
-        <div class="absolute -top-24 -left-24 w-72 h-72 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-red-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="max-w-4xl mx-auto flex flex-col items-center relative z-10">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Lambang_negara_Indonesia_Garuda_Pancasila.svg" alt="Logo Garuda Pancasila" class="w-32 h-32 mb-6 drop-shadow-2xl animate-float">
-            <span class="bg-amber-400/20 text-amber-200 text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3 border border-amber-400/30">Tugas Proyek PPKN</span>
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">PANCASILA & PENGAMALANNYA</h1>
-            <p class="text-base md:text-lg text-amber-100/90 max-w-2xl font-light">Mengeksplorasi nilai-nilai luhur dasar negara Indonesia dalam implementasi kehidupan sehari-hari.</p>
-        </div>
-    </header>
+<body>
 
-    <main class="max-w-5xl mx-auto px-6 py-16">
-        <div class="text-center mb-14">
-            <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Nilai & Dokumentasi Pengamalan Sila</h2>
-            <div class="w-20 h-1.5 bg-amber-500 mx-auto mt-3 rounded-full"></div>
+
+<!-- =====================================================
+     LOADER
+===================================================== -->
+
+<div class="loader" id="loader">
+
+    <div class="loader-inner">
+
+        <div class="loader-logo">
+            <span>P</span>ANCASILA
         </div>
 
-        <div class="space-y-10">
-            <div class="glass-card rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden md:flex border-l-8 border-red-600 group">
-                <div class="md:w-1/3 bg-red-50/80 p-8 flex flex-col justify-center items-center text-center">
-                    <span class="text-5xl font-black text-red-600 mb-2 group-hover:scale-110 transition-transform duration-300">01</span>
-                    <h3 class="text-lg font-bold text-red-900">Ketuhanan Yang Maha Esa</h3>
-                </div>
-                <div class="md:w-2/3 p-8 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-semibold text-slate-700 mb-3 text-sm uppercase tracking-wider">Contoh Pengamalan:</h4>
-                        <ul class="space-y-2 text-slate-600 text-sm md:text-base">
-                            <li class="flex items-start"><span class="text-red-500 mr-2">▪</span> Menjalankan ibadah sesuai agama dan kepercayaan masing-masing.</li>
-                            <li class="flex items-start"><span class="text-red-500 mr-2">▪</span> Menghormati teman atau tetangga yang berbeda keyakinan.</li>
-                        </ul>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-100">
-                        <span class="text-[10px] font-bold uppercase tracking-widest bg-slate-200/70 text-slate-600 px-2.5 py-1 rounded-md">Dokumentasi</span>
-                        <div class="mt-3 grid grid-cols-2 gap-3">
-                            <img src="https://images.unsplash.com/photo-1543165365-07232ed1961f?auto=format&fit=crop&w=400&q=80" alt="Ibadah" class="rounded-xl h-28 w-full object-cover hover:scale-105 transition duration-300 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=400&q=80" alt="Toleransi" class="rounded-xl h-28 w-full object-cover hover:scale-105 transition duration-300 shadow-sm">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden md:flex border-l-8 border-amber-600 group">
-                <div class="md:w-1/3 bg-amber-50/80 p-8 flex flex-col justify-center items-center text-center">
-                    <span class="text-5xl font-black text-amber-600 mb-2 group-hover:scale-110 transition-transform duration-300">02</span>
-                    <h3 class="text-lg font-bold text-amber-900">Kemanusiaan yang Adil dan Beradab</h3>
-                </div>
-                <div class="md:w-2/3 p-8 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-semibold text-slate-700 mb-3 text-sm uppercase tracking-wider">Contoh Pengamalan:</h4>
-                        <ul class="space-y-2 text-slate-600 text-sm md:text-base">
-                            <li class="flex items-start"><span class="text-amber-500 mr-2">▪</span> Mengakui persamaan derajat, hak, dan kewajiban asasi manusia.</li>
-                            <li class="flex items-start"><span class="text-amber-500 mr-2">▪</span> Gemar melakukan kegiatan kemanusiaan seperti bakti sosial/donasi.</li>
-                        </ul>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-100">
-                        <span class="text-[10px] font-bold uppercase tracking-widest bg-slate-200/70 text-slate-600 px-2.5 py-1 rounded-md">Dokumentasi</span>
-                        <div class="mt-3 grid grid-cols-2 gap-3">
-                            <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=400&q=80" alt="Donasi" class="rounded-xl h-28 w-full object-cover hover:scale-105 transition duration-300 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=400&q=80" alt="Bantuan" class="rounded-xl h-28 w-full object-cover hover:scale-105 transition duration-300 shadow-sm">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden md:flex border-l-8 border-yellow-500 group">
-                <div class="md:w-1/3 bg-yellow-50/80 p-8 flex flex-col justify-center items-center text-center">
-                    <span class="text-5xl font-black text-yellow-600 mb-2 group-hover:scale-110 transition-transform duration-300">03</span>
-                    <h3 class="text-lg font-bold text-yellow-900">Persatuan Indonesia</h3>
-                </div>
-                <div class="md:w-2/3 p-8 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-semibold text-slate-700 mb-3 text-sm uppercase tracking-wider">Contoh Pengamalan:</h4>
-                        <ul class="space-y-2 text-slate-600 text-sm md:text-base">
-                            <li class="flex items-start"><span class="text-yellow-600 mr-2">▪</span> Mengutamakan kepentingan bangsa dan negara di atas kepentingan pribadi.</li>
-                            <li class="flex items-start"><span class="text-yellow-600 mr-2">▪</span> Menjaga persatuan di tengah keberagaman suku dan budaya.</li>
-                        </ul>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-100">
-                        <span class="text-[10px] font-bold uppercase tracking-widest bg-slate-200/70 text-slate-600 px-2.5 py-1 rounded-md">Dokumentasi</span>
-                        <div class="mt-3 grid grid-cols-2 gap-3">
-                            <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=400&q=80" alt="Keberagaman" class="rounded-xl h-28 w-full object-cover hover:scale-105 transition duration-300 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" alt="Persahabatan" class="rounded-xl h-28 w-full object-cover hover:scale-105 transition duration-300 shadow-sm">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden md:flex border-l-8 border-emerald-600 group">
-                <div class="md:w-1/3 bg-emerald-50/80 p-8 flex flex-col justify-center items-center text-center">
-                    <span class="text-5xl font-black text-emerald-600 mb-2 group-hover:scale-110 transition-transform duration-300">04</span>
-                    <h3 class="text-lg font-bold text-emerald-900">Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan</h3>
-                </div>
-                <div class="md:w-2/3 p-8 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-semibold text-slate-700 mb-3 text-sm uppercase tracking-wider">Contoh Pengamalan:</h4>
-                        <ul class="space-y-2 text-slate-600 text-sm md:text-base">
-                            <li class="flex items-start"><span class="text-emerald-500 mr-2">▪</span> Mengutamakan musyawarah mufakat dalam mengambil keputusan.</li>
-                            <li class="flex items-start"><span class="text-emerald-500 mr-2">▪</span> Menghargai hasil keputusan musyawarah dengan penuh tanggung jawab.</li>
-                        </ul>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-100">
-                        <span class="text-[10px] font-bold uppercase tracking-widest bg-slate-200/70 text-slate-600 px-2.5 py-1 rounded-md">Dokumentasi</span>
-                        <div class="mt-3 grid grid-cols-2 gap-3">
-                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=400&q=80" alt="Musyawarah" class="rounded-xl h-28 w-full object-cover hover:scale-105 transition duration-300 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80" alt="Diskusi" class="rounded-xl h-28 w-full object-cover hover:scale-105 transition duration-300 shadow-sm">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden md:flex border-l-8 border-sky-600 group">
-                <div class="md:w-1/3 bg-sky-50/80 p-8 flex flex-col justify-center items-center text-center">
-                    <span class="text-5xl font-black text-sky-600 mb-2 group-hover:scale-110 transition-transform duration-300">05</span>
-                    <h3 class="text-lg font-bold text-sky-900">Keadilan Sosial bagi Seluruh Rakyat Indonesia</h3>
-                </div>
-                <div class="md:w-2/3 p-8 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-semibold text-slate-700 mb-3 text-sm uppercase tracking-wider">Contoh Pengamalan:</h4>
-                        <ul class="space-y-2 text-slate-600 text-sm md:text-base">
-                            <li class="flex items-start"><span class="text-sky-500 mr-2">▪</span> Bersikap adil dan menjaga keseimbangan hak dan kewajiban.</li>
-                            <li class="flex items-start"><span class="text-sky-500 mr-2">▪</span> Suka bekerja keras dan menghargai hasil karya orang lain.</li>
-                        </ul>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-100">
-                        <span class="text-[10px] font-bold uppercase tracking-widest bg-slate-200/70 text-slate-600 px-2.5 py-1 rounded-md">Dokumentasi</span>
-                        <div class="mt-3 grid grid-cols-2 gap-3">
-                            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=80" alt="Kerja Keras" class="rounded-xl h-28 w-full object-cover hover:scale-105 transition duration-300 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=400&q=80" alt="Keadilan" class="rounded-xl h-28 w-full object-cover hover:scale-105 transition duration-300 shadow-sm">
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="loader-line">
+            <div></div>
         </div>
-    </main>
 
-    <section class="bg-slate-900 text-white py-20 px-6 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
+        <small>
+            LOADING PROJECT...
+        </small>
 
-        <div class="max-w-md mx-auto text-center relative z-10">
-            <span class="text-amber-400 text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">Tim Kami</span>
-            <h2 class="text-3xl font-extrabold mt-3 tracking-tight">Anggota Kelompok</h2>
-            <p class="text-slate-400 text-sm mt-1 mb-10">Geser atau gunakan tombol di bawah untuk melihat profil tim.</p>
-            
-            <div class="relative bg-slate-800/80 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl shadow-2xl">
-                
-                <div id="slider-container" class="relative min-h-[320px] flex items-center justify-center">
-                    
-                    <div class="slider-item absolute inset-0 flex flex-col items-center justify-center opacity-100 scale-100 transition-all duration-700 ease-out" data-index="0">
-                        <div class="relative group">
-                            <div class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-red-500 rounded-full blur opacity-70 group-hover:opacity-100 transition duration-300"></div>
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Foto Anggota" class="relative w-28 h-28 rounded-full mb-4 object-cover border-4 border-slate-800 shadow-xl">
-                        </div>
-                        <h3 class="font-bold text-xl text-white mt-2">Nama Anggota 1</h3>
-                        <span class="inline-block bg-amber-500/20 text-amber-300 text-xs font-semibold px-3 py-1 rounded-full mt-1 border border-amber-500/30">Ketua Kelompok</span>
-                        <p class="text-xs text-slate-400 mt-2 font-mono">No. Absen: 01</p>
-                    </div>
+    </div>
 
-                    <div class="slider-item absolute inset-0 flex flex-col items-center justify-center opacity-0 scale-90 pointer-events-none transition-all duration-700 ease-out" data-index="1">
-                        <div class="relative group">
-                            <div class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-red-500 rounded-full blur opacity-70 group-hover:opacity-100 transition duration-300"></div>
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Foto Anggota" class="relative w-28 h-28 rounded-full mb-4 object-cover border-4 border-slate-800 shadow-xl">
-                        </div>
-                        <h3 class="font-bold text-xl text-white mt-2">Nama Anggota 2</h3>
-                        <span class="inline-block bg-amber-500/20 text-amber-300 text-xs font-semibold px-3 py-1 rounded-full mt-1 border border-amber-500/30">Anggota</span>
-                        <p class="text-xs text-slate-400 mt-2 font-mono">No. Absen: 02</p>
-                    </div>
+</div>
 
-                    <div class="slider-item absolute inset-0 flex flex-col items-center justify-center opacity-0 scale-90 pointer-events-none transition-all duration-700 ease-out" data-index="2">
-                        <div class="relative group">
-                            <div class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-red-500 rounded-full blur opacity-70 group-hover:opacity-100 transition duration-300"></div>
-                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80" alt="Foto Anggota" class="relative w-28 h-28 rounded-full mb-4 object-cover border-4 border-slate-800 shadow-xl">
-                        </div>
-                        <h3 class="font-bold text-xl text-white mt-2">Nama Anggota 3</h3>
-                        <span class="inline-block bg-amber-500/20 text-amber-300 text-xs font-semibold px-3 py-1 rounded-full mt-1 border border-amber-500/30">Anggota</span>
-                        <p class="text-xs text-slate-400 mt-2 font-mono">No. Absen: 03</p>
-                    </div>
 
-                    <div class="slider-item absolute inset-0 flex flex-col items-center justify-center opacity-0 scale-90 pointer-events-none transition-all duration-700 ease-out" data-index="3">
-                        <div class="relative group">
-                            <div class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-red-500 rounded-full blur opacity-70 group-hover:opacity-100 transition duration-300"></div>
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" alt="Foto Anggota" class="relative w-28 h-28 rounded-full mb-4 object-cover border-4 border-slate-800 shadow-xl">
-                        </div>
-                        <h3 class="font-bold text-xl text-white mt-2">Nama Anggota 4</h3>
-                        <span class="inline-block bg-amber-500/20 text-amber-300 text-xs font-semibold px-3 py-1 rounded-full mt-1 border border-amber-500/30">Anggota</span>
-                        <p class="text-xs text-slate-400 mt-2 font-mono">No. Absen: 04</p>
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="bg">
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+
+</div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar" id="navbar">
+
+    <a href="#home" class="logo">
+
+        <div class="logo-circle">
+            🇮🇩
+        </div>
+
+        <div class="logo-text">
+
+            <strong>PANCASILA</strong>
+
+            <small>
+                PPKn PROJECT 2026
+            </small>
+
+        </div>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="#home">HOME</a>
+        <a href="#sila">5 SILA</a>
+        <a href="#kegiatan">KEGIATAN</a>
+        <a href="#anggota">ANGGOTA</a>
+        <a href="#galeri">GALERI</a>
+
+    </div>
+
+
+    <button class="menu" id="menu">
+
+        <span></span>
+        <span></span>
+
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     MOBILE MENU
+===================================================== -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+    <a href="#home">HOME</a>
+    <a href="#sila">5 SILA</a>
+    <a href="#kegiatan">KEGIATAN</a>
+    <a href="#anggota">ANGGOTA</a>
+    <a href="#galeri">GALERI</a>
+
+</div>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="grid"></div>
+
+
+    <div class="hero-content reveal">
+
+        <div class="badge">
+
+            <span class="dot"></span>
+
+            TUGAS PROYEK PPKn
+
+        </div>
+
+
+        <h1>
+
+            PANCASILA
+
+            <span>&</span>
+
+            <strong>PENGAMALANNYA</strong>
+
+        </h1>
+
+
+        <p class="hero-text">
+
+            Mengenal nilai-nilai luhur Pancasila dan
+            bagaimana menerapkannya dalam kehidupan
+            sehari-hari melalui aksi nyata.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a href="#sila" class="btn btn-main">
+
+                MULAI EKSPLORASI ↗
+
+            </a>
+
+
+            <a href="#anggota" class="btn btn-light">
+
+                LIHAT TIM
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="garuda" id="garuda">
+
+        <img
+            src="foto/garuda.png"
+            alt="Garuda Pancasila"
+        >
+
+        <div class="garuda-info">
+
+            <span>01</span>
+
+            <div></div>
+
+            <span>BHINNEKA TUNGGAL IKA</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="scroll">
+
+        ↓ SCROLL TO EXPLORE
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro">
+
+    <div class="label">
+        <span>01</span>
+        TENTANG PROJEK
+    </div>
+
+
+    <div class="intro-content reveal">
+
+        <h2>
+
+            Pancasila bukan hanya
+            <span>untuk dihafalkan.</span>
+
+        </h2>
+
+
+        <div class="intro-text">
+
+            <p>
+
+                Pancasila merupakan dasar negara Indonesia
+                yang mengandung nilai-nilai luhur untuk menjadi
+                pedoman dalam kehidupan bermasyarakat,
+                berbangsa, dan bernegara.
+
+            </p>
+
+
+            <p>
+
+                Melalui projek ini, kami mencoba memahami
+                sekaligus menunjukkan contoh pengamalan
+                setiap sila Pancasila dalam kehidupan
+                sehari-hari.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section class="stats">
+
+    <div class="stat reveal">
+
+        <span class="stat-number">
+            5
+        </span>
+
+        <div>
+
+            <strong>SILA</strong>
+
+            <small>
+                Nilai dasar Pancasila
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat reveal">
+
+        <span class="stat-number">
+            ∞
+        </span>
+
+        <div>
+
+            <strong>NILAI</strong>
+
+            <small>
+                Yang dapat diterapkan
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat reveal">
+
+        <span class="stat-number">
+            01
+        </span>
+
+        <div>
+
+            <strong>TUJUAN</strong>
+
+            <small>
+                Menjadi warga yang baik
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SILA SECTION
+===================================================== -->
+
+<section class="sila-section" id="sila">
+
+    <div class="label">
+        <span>02</span>
+        PANCASILA
+    </div>
+
+
+    <div class="sila-heading">
+
+        <h2>
+
+            5 Sila.
+            <span>5 Nilai.</span>
+
+        </h2>
+
+
+        <p>
+
+            Klik setiap sila untuk melihat
+            nilai dan contoh pengamalannya.
+
+        </p>
+
+    </div>
+
+
+    <!-- TABS -->
+
+    <div class="tabs">
+
+        <button class="tab active">
+            <span>01</span>
+            KETUHANAN
+        </button>
+
+        <button class="tab">
+            <span>02</span>
+            KEMANUSIAAN
+        </button>
+
+        <button class="tab">
+            <span>03</span>
+            PERSATUAN
+        </button>
+
+        <button class="tab">
+            <span>04</span>
+            KERAKYATAN
+        </button>
+
+        <button class="tab">
+            <span>05</span>
+            KEADILAN
+        </button>
+
+    </div>
+
+
+    <!-- SILA 1 -->
+
+    <article class="sila-card active">
+
+        <div class="sila-no">
+            01
+        </div>
+
+
+        <div class="sila-main">
+
+            <div class="sila-icon red">
+                ✦
+            </div>
+
+            <div>
+
+                <small>
+                    SILA PERTAMA
+                </small>
+
+                <h3>
+                    Ketuhanan Yang Maha Esa
+                </h3>
+
+                <p>
+
+                    Mengakui dan menghormati adanya Tuhan
+                    serta menjalankan kehidupan beragama
+                    dengan penuh toleransi.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="practice">
+
+            <div class="practice-title">
+                CONTOH PENGAMALAN
+            </div>
+
+            <ul>
+
+                <li>
+                    Menjalankan ibadah sesuai agama dan
+                    kepercayaan masing-masing.
+                </li>
+
+                <li>
+                    Menghormati teman atau tetangga yang
+                    berbeda keyakinan.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="sila-photo">
+
+            <img
+                src="foto/sila1.jpg"
+                alt="Sila pertama"
+            >
+
+            <div class="photo-tag">
+                DOCUMENTATION / 01
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <!-- SILA 2 -->
+
+    <article class="sila-card">
+
+        <div class="sila-no">
+            02
+        </div>
+
+
+        <div class="sila-main">
+
+            <div class="sila-icon yellow">
+                ✦
+            </div>
+
+            <div>
+
+                <small>
+                    SILA KEDUA
+                </small>
+
+                <h3>
+                    Kemanusiaan yang Adil dan Beradab
+                </h3>
+
+                <p>
+
+                    Menghargai manusia sebagai makhluk yang
+                    memiliki hak, kewajiban, dan martabat.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="practice">
+
+            <div class="practice-title">
+                CONTOH PENGAMALAN
+            </div>
+
+            <ul>
+
+                <li>
+                    Mengakui persamaan derajat, hak,
+                    dan kewajiban asasi manusia.
+                </li>
+
+                <li>
+                    Gemar melakukan kegiatan kemanusiaan
+                    seperti bakti sosial atau donasi.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="sila-photo">
+
+            <img
+                src="foto/sila2.jpg"
+                alt="Sila kedua"
+            >
+
+            <div class="photo-tag">
+                DOCUMENTATION / 02
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <!-- SILA 3 -->
+
+    <article class="sila-card">
+
+        <div class="sila-no">
+            03
+        </div>
+
+
+        <div class="sila-main">
+
+            <div class="sila-icon orange">
+                ✦
+            </div>
+
+            <div>
+
+                <small>
+                    SILA KETIGA
+                </small>
+
+                <h3>
+                    Persatuan Indonesia
+                </h3>
+
+                <p>
+
+                    Menempatkan persatuan dan kesatuan
+                    bangsa sebagai kekuatan dalam
+                    keberagaman.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="practice">
+
+            <div class="practice-title">
+                CONTOH PENGAMALAN
+            </div>
+
+            <ul>
+
+                <li>
+                    Mengutamakan kepentingan bangsa
+                    dan negara di atas kepentingan pribadi.
+                </li>
+
+                <li>
+                    Menjaga persatuan di tengah
+                    keberagaman suku dan budaya.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="sila-photo">
+
+            <img
+                src="foto/sila3.jpg"
+                alt="Sila ketiga"
+            >
+
+            <div class="photo-tag">
+                DOCUMENTATION / 03
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <!-- SILA 4 -->
+
+    <article class="sila-card">
+
+        <div class="sila-no">
+            04
+        </div>
+
+
+        <div class="sila-main">
+
+            <div class="sila-icon green">
+                ✦
+            </div>
+
+            <div>
+
+                <small>
+                    SILA KEEMPAT
+                </small>
+
+                <h3>
+                    Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan
+                </h3>
+
+                <p>
+
+                    Mengutamakan musyawarah dalam
+                    mengambil keputusan dan menghargai
+                    pendapat orang lain.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="practice">
+
+            <div class="practice-title">
+                CONTOH PENGAMALAN
+            </div>
+
+            <ul>
+
+                <li>
+                    Mengutamakan musyawarah mufakat
+                    dalam mengambil keputusan.
+                </li>
+
+                <li>
+                    Menghargai hasil keputusan musyawarah
+                    dengan penuh tanggung jawab.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="sila-photo">
+
+            <img
+                src="foto/sila4.jpg"
+                alt="Sila keempat"
+            >
+
+            <div class="photo-tag">
+                DOCUMENTATION / 04
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <!-- SILA 5 -->
+
+    <article class="sila-card">
+
+        <div class="sila-no">
+            05
+        </div>
+
+
+        <div class="sila-main">
+
+            <div class="sila-icon blue">
+                ✦
+            </div>
+
+            <div>
+
+                <small>
+                    SILA KELIMA
+                </small>
+
+                <h3>
+                    Keadilan Sosial bagi Seluruh Rakyat Indonesia
+                </h3>
+
+                <p>
+
+                    Mewujudkan kehidupan yang adil serta
+                    menghargai hak dan kewajiban setiap orang.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="practice">
+
+            <div class="practice-title">
+                CONTOH PENGAMALAN
+            </div>
+
+            <ul>
+
+                <li>
+                    Bersikap adil dan menjaga keseimbangan
+                    hak dan kewajiban.
+                </li>
+
+                <li>
+                    Suka bekerja keras dan menghargai
+                    hasil karya orang lain.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="sila-photo">
+
+            <img
+                src="foto/sila5.jpg"
+                alt="Sila kelima"
+            >
+
+            <div class="photo-tag">
+                DOCUMENTATION / 05
+            </div>
+
+        </div>
+
+    </article>
+
+</section>
+
+
+<!-- =====================================================
+     MARQUEE
+===================================================== -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <span>PERSATUAN</span>
+        <b>✦</b>
+
+        <span>GOTONG ROYONG</span>
+        <b>✦</b>
+
+        <span>TOLERANSI</span>
+        <b>✦</b>
+
+        <span>MUSYAWARAH</span>
+        <b>✦</b>
+
+        <span>KEADILAN</span>
+        <b>✦</b>
+
+        <span>PERSATUAN</span>
+        <b>✦</b>
+
+        <span>GOTONG ROYONG</span>
+        <b>✦</b>
+
+        <span>TOLERANSI</span>
+        <b>✦</b>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     KEGIATAN
+===================================================== -->
+
+<section class="activities" id="kegiatan">
+
+    <div class="activities-heading">
+
+        <div class="label">
+            <span>03</span>
+            OUR ACTIVITIES
+        </div>
+
+
+        <h2>
+
+            Dari ide menjadi
+            <span>aksi.</span>
+
+        </h2>
+
+
+        <p>
+
+            Dokumentasi proses kami dalam menyelesaikan
+            projek PPKn bersama-sama.
+
+        </p>
+
+    </div>
+
+
+    <div class="activity-grid">
+
+        <div class="activity big reveal">
+
+            <img
+                src="foto/kegiatan1.jpg"
+                alt="Diskusi kelompok"
+            >
+
+            <div class="activity-info">
+
+                <small>
+                    01 / DISCUSSION
+                </small>
+
+                <h3>
+                    Diskusi Kelompok
+                </h3>
+
+                <p>
+                    Menyatukan ide dan menentukan
+                    pembagian tugas.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="activity reveal">
+
+            <img
+                src="foto/kegiatan2.jpg"
+                alt="Persiapan projek"
+            >
+
+            <div class="activity-info">
+
+                <small>
+                    02 / PREPARATION
+                </small>
+
+                <h3>
+                    Persiapan Projek
+                </h3>
+
+                <p>
+                    Mempersiapkan kebutuhan projek.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="activity reveal">
+
+            <img
+                src="foto/kegiatan3.jpg"
+                alt="Pelaksanaan projek"
+            >
+
+            <div class="activity-info">
+
+                <small>
+                    03 / ACTION
+                </small>
+
+                <h3>
+                    Pelaksanaan
+                </h3>
+
+                <p>
+                    Menerapkan hasil diskusi.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="activity wide reveal">
+
+            <img
+                src="foto/kegiatan4.jpg"
+                alt="Momen bersama"
+            >
+
+            <div class="activity-info">
+
+                <small>
+                    04 / MEMORY
+                </small>
+
+                <h3>
+                    Momen Bersama
+                </h3>
+
+                <p>
+                    Mengabadikan perjalanan kelompok.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TEAM
+===================================================== -->
+
+<section class="team" id="anggota">
+
+    <div class="team-heading">
+
+        <div>
+
+            <div class="label">
+                <span>04</span>
+                MEET THE TEAM
+            </div>
+
+            <h2>
+
+                Dibalik projek ini
+                <span>ada kami.</span>
+
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            Kenalan dengan anggota kelompok
+            yang mengerjakan projek ini.
+
+        </p>
+
+    </div>
+
+
+    <div class="team-wrapper">
+
+        <button
+            class="team-button prev"
+            id="prevTeam"
+        >
+            ←
+        </button>
+
+        <button
+            class="team-button"
+            id="nextTeam"
+        >
+            →
+        </button>
+
+
+        <div class="team-track" id="teamTrack">
+
+
+            <div class="member reveal">
+
+                <div class="member-photo">
+
+                    <img
+                        src="foto/anggota1.jpg"
+                        alt="Anggota 1"
+                    >
+
+                    <div class="member-number">
+                        01
                     </div>
 
                 </div>
 
-                <button onclick="prevSlide()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-700/80 hover:bg-amber-500 text-white w-10 h-10 rounded-full flex items-center justify-center transition shadow-lg cursor-pointer backdrop-blur">
-                    &#10094;
-                </button>
-                <button onclick="nextSlide()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-700/80 hover:bg-amber-500 text-white w-10 h-10 rounded-full flex items-center justify-center transition shadow-lg cursor-pointer backdrop-blur">
-                    &#10095;
-                </button>
+                <div class="member-info">
 
-                <div class="flex justify-center space-x-2 mt-6">
-                    <span onclick="currentSlide(0)" class="dot w-8 h-2.5 rounded-full bg-amber-500 cursor-pointer transition-all duration-300"></span>
-                    <span onclick="currentSlide(1)" class="dot w-2.5 h-2.5 rounded-full bg-slate-600 cursor-pointer transition-all duration-300"></span>
-                    <span onclick="currentSlide(2)" class="dot w-2.5 h-2.5 rounded-full bg-slate-600 cursor-pointer transition-all duration-300"></span>
-                    <span onclick="currentSlide(3)" class="dot w-2.5 h-2.5 rounded-full bg-slate-600 cursor-pointer transition-all duration-300"></span>
+                    <small>
+                        KETUA KELOMPOK
+                    </small>
+
+                    <h3>
+                        Nama Anggota 1
+                    </h3>
+
+                    <p>
+                        No. Absen 01
+                    </p>
+
                 </div>
 
             </div>
+
+
+            <div class="member reveal">
+
+                <div class="member-photo">
+
+                    <img
+                        src="foto/anggota2.jpg"
+                        alt="Anggota 2"
+                    >
+
+                    <div class="member-number">
+                        02
+                    </div>
+
+                </div>
+
+                <div class="member-info">
+
+                    <small>
+                        ANGGOTA
+                    </small>
+
+                    <h3>
+                        Nama Anggota 2
+                    </h3>
+
+                    <p>
+                        No. Absen 02
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="member reveal">
+
+                <div class="member-photo">
+
+                    <img
+                        src="foto/anggota3.jpg"
+                        alt="Anggota 3"
+                    >
+
+                    <div class="member-number">
+                        03
+                    </div>
+
+                </div>
+
+                <div class="member-info">
+
+                    <small>
+                        ANGGOTA
+                    </small>
+
+                    <h3>
+                        Nama Anggota 3
+                    </h3>
+
+                    <p>
+                        No. Absen 03
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="member reveal">
+
+                <div class="member-photo">
+
+                    <img
+                        src="foto/anggota4.jpg"
+                        alt="Anggota 4"
+                    >
+
+                    <div class="member-number">
+                        04
+                    </div>
+
+                </div>
+
+                <div class="member-info">
+
+                    <small>
+                        ANGGOTA
+                    </small>
+
+                    <h3>
+                        Nama Anggota 4
+                    </h3>
+
+                    <p>
+                        No. Absen 04
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="member reveal">
+
+                <div class="member-photo">
+
+                    <img
+                        src="foto/anggota5.jpg"
+                        alt="Anggota 5"
+                    >
+
+                    <div class="member-number">
+                        05
+                    </div>
+
+                </div>
+
+                <div class="member-info">
+
+                    <small>
+                        ANGGOTA
+                    </small>
+
+                    <h3>
+                        Nama Anggota 5
+                    </h3>
+
+                    <p>
+                        No. Absen 05
+                    </p>
+
+                </div>
+
+            </div>
+
+
         </div>
-    </section>
 
-    <footer class="bg-slate-950 text-slate-400 py-6 text-center text-xs border-t border-slate-800">
-        <p>&copy; 2026 Tugas PPKN Pancasila. Dibuat dengan antusias dan teknologi modern.</p>
-    </footer>
+    </div>
 
-    <script>
-        let currentIndex = 0;
-        const slides = document.querySelectorAll('.slider-item');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = slides.length;
+</section>
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                if (i === index) {
-                    slide.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
-                    slide.classList.add('opacity-100', 'scale-100');
-                } else {
-                    slide.classList.remove('opacity-100', 'scale-100');
-                    slide.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section class="gallery" id="galeri">
+
+    <div class="gallery-heading">
+
+        <div class="label">
+            <span>05</span>
+            PHOTO GALLERY
+        </div>
+
+        <h2>
+
+            Cerita kami,
+            <span>dibekukan dalam foto.</span>
+
+        </h2>
+
+    </div>
+
+
+    <div class="gallery-grid">
+
+
+        <div class="gallery-item large reveal">
+
+            <img
+                src="foto/foto1.jpg"
+                alt="Foto 1"
+            >
+
+            <div class="gallery-overlay">
+
+                <span>01</span>
+
+                <strong>
+                    Our Moment
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item reveal">
+
+            <img
+                src="foto/foto2.jpg"
+                alt="Foto 2"
+            >
+
+            <div class="gallery-overlay">
+
+                <span>02</span>
+
+                <strong>
+                    Together
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item reveal">
+
+            <img
+                src="foto/foto3.jpg"
+                alt="Foto 3"
+            >
+
+            <div class="gallery-overlay">
+
+                <span>03</span>
+
+                <strong>
+                    Teamwork
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item wide reveal">
+
+            <img
+                src="foto/foto4.jpg"
+                alt="Foto 4"
+            >
+
+            <div class="gallery-overlay">
+
+                <span>04</span>
+
+                <strong>
+                    Our Process
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item reveal">
+
+            <img
+                src="foto/foto5.jpg"
+                alt="Foto 5"
+            >
+
+            <div class="gallery-overlay">
+
+                <span>05</span>
+
+                <strong>
+                    Memories
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item reveal">
+
+            <img
+                src="foto/foto6.jpg"
+                alt="Foto 6"
+            >
+
+            <div class="gallery-overlay">
+
+                <span>06</span>
+
+                <strong>
+                    One Team
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item large reveal">
+
+            <img
+                src="foto/foto7.jpg"
+                alt="Foto 7"
+            >
+
+            <div class="gallery-overlay">
+
+                <span>07</span>
+
+                <strong>
+                    Final Project
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item reveal">
+
+            <img
+                src="foto/foto8.jpg"
+                alt="Foto 8"
+            >
+
+            <div class="gallery-overlay">
+
+                <span>08</span>
+
+                <strong>
+                    Last Moment
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="final">
+
+    <div class="final-content">
+
+        <small>
+            PANCASILA DALAM KEHIDUPAN
+        </small>
+
+
+        <h2>
+
+            Bukan sekadar
+            <span>kata.</span>
+
+        </h2>
+
+
+        <p>
+
+            Mari jadikan nilai Pancasila sebagai
+            bagian dari kehidupan kita.
+
+        </p>
+
+
+        <a href="#home" class="back">
+
+            KEMBALI KE ATAS ↑
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+        🇮🇩 PANCASILA
+    </div>
+
+    <div class="footer-center">
+        TUGAS PROYEK PPKn • 2026
+    </div>
+
+    <div class="footer-right">
+        Bhinneka Tunggal Ika
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     LIGHTBOX
+===================================================== -->
+
+<div class="lightbox" id="lightbox">
+
+    <button class="close" id="close">
+        ×
+    </button>
+
+
+    <button
+        class="light-btn light-prev"
+        id="lightPrev"
+    >
+        ‹
+    </button>
+
+
+    <img
+        id="lightImage"
+        src=""
+        alt="Preview"
+    >
+
+
+    <button
+        class="light-btn light-next"
+        id="lightNext"
+    >
+        ›
+    </button>
+
+
+    <div class="counter">
+
+        <span id="current">
+            01
+        </span>
+
+        /
+
+        <span id="total">
+            08
+        </span>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        document
+            .getElementById("loader")
+            .classList.add("hide");
+
+    }, 1200);
+
+});
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+const navbar =
+    document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 50){
+
+        navbar.classList.add("scrolled");
+
+    }else{
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menu =
+    document.getElementById("menu");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+
+menu.addEventListener("click", () => {
+
+    mobileMenu.classList.toggle("open");
+
+});
+
+
+document
+    .querySelectorAll(".mobile-menu a")
+    .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            mobileMenu.classList.remove("open");
+
+        });
+
+    });
+
+
+/* =========================================================
+   SILA INTERACTIVE
+========================================================= */
+
+const tabs =
+    document.querySelectorAll(".tab");
+
+const silaCards =
+    document.querySelectorAll(".sila-card");
+
+
+tabs.forEach((tab,index) => {
+
+    tab.addEventListener("click", () => {
+
+        tabs.forEach(item => {
+
+            item.classList.remove("active");
+
+        });
+
+
+        silaCards.forEach(card => {
+
+            card.classList.remove("active");
+
+        });
+
+
+        tab.classList.add("active");
+
+        silaCards[index]
+            .classList.add("active");
+
+    });
+
+});
+
+
+/* =========================================================
+   TEAM SLIDER
+========================================================= */
+
+const teamTrack =
+    document.getElementById("teamTrack");
+
+const nextTeam =
+    document.getElementById("nextTeam");
+
+const prevTeam =
+    document.getElementById("prevTeam");
+
+
+nextTeam.addEventListener("click", () => {
+
+    teamTrack.scrollBy({
+
+        left:300,
+
+        behavior:"smooth"
+
+    });
+
+});
+
+
+prevTeam.addEventListener("click", () => {
+
+    teamTrack.scrollBy({
+
+        left:-300,
+
+        behavior:"smooth"
+
+    });
+
+});
+
+
+/* =========================================================
+   GALLERY LIGHTBOX
+========================================================= */
+
+const galleryItems =
+    document.querySelectorAll(".gallery-item");
+
+const lightbox =
+    document.getElementById("lightbox");
+
+const lightImage =
+    document.getElementById("lightImage");
+
+const close =
+    document.getElementById("close");
+
+const lightPrev =
+    document.getElementById("lightPrev");
+
+const lightNext =
+    document.getElementById("lightNext");
+
+const current =
+    document.getElementById("current");
+
+const total =
+    document.getElementById("total");
+
+
+let images = [];
+
+let imageIndex = 0;
+
+
+galleryItems.forEach((item,index) => {
+
+    const img =
+        item.querySelector("img");
+
+    images.push(img.src);
+
+
+    item.addEventListener("click", () => {
+
+        imageIndex = index;
+
+        openLightbox();
+
+    });
+
+});
+
+
+total.textContent =
+    String(images.length).padStart(2,"0");
+
+
+function openLightbox(){
+
+    lightbox.classList.add("active");
+
+    lightImage.src =
+        images[imageIndex];
+
+    current.textContent =
+        String(imageIndex + 1)
+            .padStart(2,"0");
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function closeLightbox(){
+
+    lightbox.classList.remove("active");
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+function nextImage(){
+
+    imageIndex++;
+
+    if(imageIndex >= images.length){
+
+        imageIndex = 0;
+
+    }
+
+    openLightbox();
+
+}
+
+
+function previousImage(){
+
+    imageIndex--;
+
+    if(imageIndex < 0){
+
+        imageIndex = images.length - 1;
+
+    }
+
+    openLightbox();
+
+}
+
+
+close.addEventListener(
+    "click",
+    closeLightbox
+);
+
+
+lightNext.addEventListener(
+    "click",
+    nextImage
+);
+
+
+lightPrev.addEventListener(
+    "click",
+    previousImage
+);
+
+
+lightbox.addEventListener("click",event => {
+
+    if(event.target === lightbox){
+
+        closeLightbox();
+
+    }
+
+});
+
+
+/* =========================================================
+   KEYBOARD LIGHTBOX
+========================================================= */
+
+document.addEventListener("keydown",event => {
+
+    if(!lightbox.classList.contains("active")){
+
+        return;
+
+    }
+
+
+    if(event.key === "Escape"){
+
+        closeLightbox();
+
+    }
+
+
+    if(event.key === "ArrowRight"){
+
+        nextImage();
+
+    }
+
+
+    if(event.key === "ArrowLeft"){
+
+        previousImage();
+
+    }
+
+});
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const reveal =
+    document.querySelectorAll(".reveal");
+
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting){
+
+                    entry.target
+                        .classList
+                        .add("show");
+
+                    observer
+                        .unobserve(
+                            entry.target
+                        );
+
                 }
+
             });
 
-            dots.forEach((dot, i) => {
-                if (i === index) {
-                    dot.classList.remove('w-2.5', 'bg-slate-600');
-                    dot.classList.add('w-8', 'bg-amber-500');
-                } else {
-                    dot.classList.remove('w-8', 'bg-amber-500');
-                    dot.classList.add('w-2.5', 'bg-slate-600');
-                }
+        },
+        {
+            threshold:.12
+        }
+    );
+
+
+reveal.forEach(item => {
+
+    observer.observe(item);
+
+});
+
+
+/* =========================================================
+   GARUDA PARALLAX
+========================================================= */
+
+const garuda =
+    document.getElementById("garuda");
+
+
+window.addEventListener(
+    "mousemove",
+    event => {
+
+        if(window.innerWidth < 900){
+
+            return;
+
+        }
+
+
+        const x =
+            (event.clientX /
+            window.innerWidth -
+            .5) * 12;
+
+
+        const y =
+            (event.clientY /
+            window.innerHeight -
+            .5) * 12;
+
+
+        garuda.style.marginLeft =
+            `${x}px`;
+
+        garuda.style.marginTop =
+            `${y}px`;
+
+    }
+);
+
+
+/* =========================================================
+   IMAGE FALLBACK
+========================================================= */
+
+document
+    .querySelectorAll("img")
+    .forEach(img => {
+
+        img.addEventListener(
+            "error",
+            () => {
+
+                img.style.background =
+                    "linear-gradient(135deg,#ddd,#aaa)";
+
+                img.style.objectFit =
+                    "contain";
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   AUTO TEAM SLIDER
+========================================================= */
+
+let autoSlide =
+    setInterval(() => {
+
+        if(
+            teamTrack.scrollLeft +
+            teamTrack.clientWidth >=
+            teamTrack.scrollWidth - 10
+        ){
+
+            teamTrack.scrollTo({
+
+                left:0,
+
+                behavior:"smooth"
+
             });
+
+        }else{
+
+            teamTrack.scrollBy({
+
+                left:280,
+
+                behavior:"smooth"
+
+            });
+
         }
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            showSlide(currentIndex);
-        }
+    },4500);
 
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            showSlide(currentIndex);
-        }
 
-        function currentSlide(index) {
-            currentIndex = index;
-            showSlide(currentIndex);
-        }
+/* =========================================================
+   STOP AUTO SLIDE WHEN HOVER
+========================================================= */
 
-        // Auto slide otomatis setiap 4.5 detik
-        setInterval(nextSlide, 4500);
-    </script>
+teamTrack.addEventListener(
+    "mouseenter",
+    () => {
+
+        clearInterval(autoSlide);
+
+    }
+);
+
+
+teamTrack.addEventListener(
+    "mouseleave",
+    () => {
+
+        autoSlide =
+            setInterval(() => {
+
+                teamTrack.scrollBy({
+
+                    left:280,
+
+                    behavior:"smooth"
+
+                });
+
+            },4500);
+
+    }
+);
+
+</script>
 
 </body>
 </html>
