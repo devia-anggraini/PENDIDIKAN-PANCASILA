@@ -1,735 +1,584 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Pendidikan Pancasila</title>
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Arial, sans-serif;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        background: #f7f7f7;
-        color: #333;
-    }
-
-    /* ================= NAVBAR ================= */
-
-    nav {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        padding: 15px 8%;
-
-        background: #b5121b;
-        box-shadow: 0 3px 15px rgba(0,0,0,0.2);
-    }
-
-    .logo {
-        color: white;
-        font-size: 22px;
-        font-weight: bold;
-    }
-
-    nav ul {
-        display: flex;
-        gap: 25px;
-        list-style: none;
-    }
-
-    nav ul li a {
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-    }
-
-    nav ul li a:hover {
-        color: #ffd700;
-    }
-
-    /* ================= HERO ================= */
-
-    .hero {
-        min-height: 550px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        text-align: center;
-        padding: 40px 20px;
-
-        background:
-            linear-gradient(rgba(181,18,27,0.88), rgba(181,18,27,0.88)),
-            url("images/pancasila.jpg");
-
-        background-size: cover;
-        background-position: center;
-
-        color: white;
-    }
-
-    .hero-content {
-        max-width: 850px;
-    }
-
-    .hero h1 {
-        font-size: 52px;
-        margin-bottom: 15px;
-    }
-
-    .hero h2 {
-        font-size: 27px;
-        margin-bottom: 20px;
-        color: #ffd700;
-    }
-
-    .hero p {
-        font-size: 18px;
-        line-height: 1.8;
-    }
-
-    .btn {
-        display: inline-block;
-        margin-top: 30px;
-        padding: 13px 30px;
-
-        background: #ffd700;
-        color: #333;
-
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: bold;
-
-        transition: 0.3s;
-    }
-
-    .btn:hover {
-        transform: translateY(-4px);
-        background: white;
-    }
-
-    /* ================= SECTION ================= */
-
-    section {
-        padding: 70px 8%;
-    }
-
-    .section-title {
-        text-align: center;
-        margin-bottom: 45px;
-    }
-
-    .section-title h2 {
-        color: #b5121b;
-        font-size: 34px;
-        margin-bottom: 10px;
-    }
-
-    .section-title p {
-        color: #777;
-    }
-
-    /* ================= CARD SILA ================= */
-
-    .sila-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-
-    .card {
-        background: white;
-        border-radius: 18px;
-        overflow: hidden;
-
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-
-        transition: 0.3s;
-    }
-
-    .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.16);
-    }
-
-    /* FOTO */
-
-    .card-image {
-        width: 100%;
-        height: 260px;
-        overflow: hidden;
-        background: #ddd;
-    }
-
-    .card-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-
-        transition: 0.5s;
-    }
-
-    .card:hover .card-image img {
-        transform: scale(1.08);
-    }
-
-    /* ISI CARD */
-
-    .card-content {
-        padding: 25px;
-    }
-
-    .number {
-        display: inline-flex;
-
-        width: 45px;
-        height: 45px;
-
-        align-items: center;
-        justify-content: center;
-
-        border-radius: 50%;
-
-        background: #b5121b;
-        color: white;
-
-        font-weight: bold;
-        font-size: 20px;
-
-        margin-bottom: 15px;
-    }
-
-    .card h3 {
-        color: #b5121b;
-        font-size: 21px;
-        margin-bottom: 12px;
-    }
-
-    .card p {
-        line-height: 1.7;
-        color: #555;
-    }
-
-    .card ul {
-        margin-top: 15px;
-        padding-left: 20px;
-    }
-
-    .card li {
-        margin-bottom: 8px;
-        line-height: 1.5;
-    }
-
-    /* ================= CONTOH ================= */
-
-    .examples {
-        background: #fff;
-    }
-
-    .example-container {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-    }
-
-    .example-box {
-        background: #f9f9f9;
-        border-radius: 15px;
-        padding: 25px 18px;
-        text-align: center;
-
-        border-top: 5px solid #b5121b;
-
-        transition: 0.3s;
-    }
-
-    .example-box:hover {
-        transform: translateY(-5px);
-    }
-
-    .example-box .icon {
-        font-size: 40px;
-        margin-bottom: 15px;
-    }
-
-    .example-box h3 {
-        color: #b5121b;
-        margin-bottom: 10px;
-    }
-
-    .example-box p {
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    /* ================= NILAI ================= */
-
-    .nilai {
-        background: linear-gradient(135deg, #b5121b, #d92732);
-        color: white;
-        text-align: center;
-    }
-
-    .nilai h2 {
-        font-size: 32px;
-        margin-bottom: 20px;
-    }
-
-    .nilai p {
-        max-width: 750px;
-        margin: auto;
-        line-height: 1.8;
-        font-size: 17px;
-    }
-
-    /* ================= FOOTER ================= */
-
-    footer {
-        background: #222;
-        color: white;
-        text-align: center;
-        padding: 30px 20px;
-    }
-
-    footer p {
-        margin: 6px;
-    }
-
-    /* ================= RESPONSIVE ================= */
-
-    @media (max-width: 900px) {
-
-        .sila-container {
-            grid-template-columns: 1fr;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendidikan Pancasila & Galeri Interaktif</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .example-container {
-            grid-template-columns: repeat(2, 1fr);
+        html {
+            scroll-behavior: smooth;
         }
-    }
 
-    @media (max-width: 600px) {
+        body {
+            background: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
+        /* ANIMASI FADE IN SAAT SCROLL */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        /* NAVBAR */
         nav {
-            flex-direction: column;
-            gap: 12px;
+            background: #b5121b;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: background 0.3s;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
         }
 
         nav ul {
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: flex;
+            list-style: none;
+            gap: 30px;
         }
 
         nav ul li a {
-            font-size: 13px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s ease;
         }
 
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        /* HERO */
         .hero {
-            min-height: 480px;
+            min-height: 550px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #991b1b, #b5121b, #dc2626);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 34px;
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .hero h2 {
-            font-size: 20px;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 400;
+            color: #fef08a;
         }
 
         .hero p {
-            font-size: 15px;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #f1f5f9;
         }
 
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 32px;
+            background: #ffd700;
+            color: #1e293b;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            background: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        /* SECTION */
         section {
-            padding: 50px 5%;
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
         }
 
         .section-title h2 {
-            font-size: 27px;
+            color: #b5121b;
+            font-size: 36px;
+            margin-bottom: 12px;
+            font-weight: 800;
         }
 
-        .example-container {
-            grid-template-columns: 1fr;
+        .section-title p {
+            color: #64748b;
+            font-size: 16px;
         }
 
-        .card-image {
-            height: 220px;
+        /* SILA CARD */
+        .sila-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
         }
-    }
-</style>
 
-</head><body><!-- ================= NAVBAR ================= -->
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border-top: 6px solid #b5121b;
+        }
 
-<nav>
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(181, 18, 27, 0.15);
+        }
 
-    <div class="logo">
-         Pendidikan Pancasila
-    </div>
+        .number {
+            width: 60px;
+            height: 60px;
+            background: #b5121b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(181, 18, 27, 0.3);
+            transition: transform 0.3s;
+        }
 
-    <ul>
-        <li><a href="#beranda">Beranda</a></li>
-        <li><a href="#sila">5 Sila</a></li>
-        <li><a href="#contoh">Contoh</a></li>
-        <li><a href="#nilai">Nilai</a></li>
-    </ul>
+        .card:hover .number {
+            transform: rotate(360deg);
+        }
 
-</nav>
+        .card h3 {
+            color: #b5121b;
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
 
+        .card p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #475569;
+        }
 
-<!-- ================= HERO ================= -->
+        /* === FITUR GALERI SLIDER (BISA DIGESER DENGAN TOMBOL / MOUSE) === */
+        .slider-section {
+            background: #edf2f7;
+            position: relative;
+        }
 
-<section class="hero" id="beranda">
+        .slider-wrapper {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+        }
 
-    <div class="hero-content">
+        .slider-container {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Hilangkan scrollbar di Firefox */
+            padding: 20px 5px;
+        }
 
-        <h1>PENDIDIKAN PANCASILA</h1>
+        .slider-container::-webkit-scrollbar {
+            display: none; /* Hilangkan scrollbar di Chrome/Safari */
+        }
 
-        <h2>Mengenal & Mengamalkan Nilai Pancasila</h2>
+        .slider-item {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            transition: all 0.4s ease;
+        }
 
-        <p>
-            Pancasila merupakan dasar negara Indonesia
-            yang menjadi pedoman dalam kehidupan bermasyarakat,
-            berbangsa, dan bernegara.
-        </p>
+        .slider-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
 
-        <a href="#sila" class="btn">
-            Mulai Belajar ↓
-        </a>
+        .slider-img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
 
-    </div>
+        .slider-item:hover .slider-img {
+            transform: scale(1.1);
+        }
 
-</section>
+        .slider-info {
+            padding: 22px;
+        }
 
+        .slider-tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #b5121b;
+            background: #fee2e2;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
 
-<!-- ================= 5 SILA ================= -->
+        .slider-info h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
 
-<section id="sila">
+        .slider-info p {
+            font-size: 13px;
+            color: #64748b;
+        }
 
-    <div class="section-title">
+        /* Tombol Navigasi Slider */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #b5121b;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: background 0.3s, transform 0.2s;
+            z-index: 10;
+        }
 
-        <h2>⭐ Lima Sila Pancasila</h2>
+        .slider-btn:hover {
+            background: #991b1b;
+            transform: translateY(-50%) scale(1.1);
+        }
 
-        <p>
-            Kenali makna dan contoh penerapan setiap sila
-            dalam kehidupan sehari-hari.
-        </p>
+        .slider-btn.prev {
+            left: -20px;
+        }
 
-    </div>
+        .slider-btn.next {
+            right: -20px;
+        }
 
+        /* TABEL SEJARAH */
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
 
-    <div class="sila-container">
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
 
+        th {
+            background: #b5121b;
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-size: 15px;
+        }
 
-        <!-- SILA 1 -->
+        td {
+            padding: 18px;
+            border-bottom: 1px solid #e2e8f0;
+            line-height: 1.6;
+            font-size: 14px;
+            color: #334155;
+        }
 
-        <div class="card">
+        tr {
+            transition: background 0.2s;
+        }
 
-            <div class="card-image">
-                <img src="images/sila1.jpg"
-                     alt="Contoh penerapan sila pertama">
-            </div>
+        tr:hover {
+            background: #fff5f5;
+        }
 
-            <div class="card-content">
+        /* QUOTE BOX */
+        .quote-box {
+            background: linear-gradient(135deg, #b5121b, #991b1b);
+            color: white;
+            text-align: center;
+            border-radius: 24px;
+            padding: 50px 30px;
+            box-shadow: 0 15px 35px rgba(181, 18, 27, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
 
+        .quote-box h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .quote-box p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Pancasila.id</div>
+        <ul>
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#sila">Nilai Sila</a></li>
+            <li><a href="#galeri">Galeri Geser</a></li>
+            <li><a href="#sejarah">Sejarah</a></li>
+        </ul>
+    </nav>
+
+    <section id="beranda" class="hero">
+        <div class="hero-content animate-fade">
+            <h1>Pendidikan Pancasila</h1>
+            <h2>Ideologi dan Fondasi Pemersatu Bangsa Indonesia</h2>
+            <p>Pancasila bukan sekadar hafalan, melainkan pedoman hidup bermasyarakat, berbangsa, dan bernegara untuk mewujudkan keadilan sosial bagi seluruh rakyat Indonesia.</p>
+            <a href="#galeri" class="btn">Jelajahi Galeri Foto</a>
+        </div>
+    </section>
+
+    <section id="sila">
+        <div class="section-title">
+            <h2>5 Sila Pancasila</h2>
+            <p>Makna mendalam yang terkandung dalam setiap lambang dan butir Pancasila</p>
+        </div>
+        <div class="sila-container">
+            <div class="card">
                 <div class="number">1</div>
-
-                <h3>
-                    Ketuhanan Yang Maha Esa
-                </h3>
-
-                <p>
-                    Menghormati kebebasan setiap orang
-                    untuk menjalankan agama dan kepercayaannya.
-                </p>
-
-                <ul>
-                    <li>Rajin beribadah.</li>
-                    <li>Menghormati teman yang berbeda agama.</li>
-                    <li>Tidak mengganggu orang lain saat beribadah.</li>
-                </ul>
-
+                <h3>Ketuhanan</h3>
+                <p>Ketuhanan Yang Maha Esa, menjunjung tinggi nilai keagamaan, moral, serta kerukunan antarumat beragama.</p>
             </div>
-
-        </div>
-
-
-        <!-- SILA 2 -->
-
-        <div class="card">
-
-            <div class="card-image">
-                <img src="images/sila2.jpg"
-                     alt="Contoh penerapan sila kedua">
-            </div>
-
-            <div class="card-content">
-
+            <div class="card">
                 <div class="number">2</div>
-
-                <h3>
-                    Kemanusiaan yang Adil dan Beradab
-                </h3>
-
-                <p>
-                    Menghargai harkat dan martabat manusia
-                    serta memperlakukan orang lain dengan baik.
-                </p>
-
-                <ul>
-                    <li>Menolong teman yang kesulitan.</li>
-                    <li>Tidak melakukan bullying.</li>
-                    <li>Menghargai orang lain.</li>
-                </ul>
-
+                <h3>Kemanusiaan</h3>
+                <p>Kemanusiaan yang adil dan beradab, mengakui persamaan derajat serta saling menghormati sesama manusia.</p>
             </div>
-
-        </div>
-
-
-        <!-- SILA 3 -->
-
-        <div class="card">
-
-            <div class="card-image">
-                <img src="images/sila3.jpg"
-                     alt="Contoh penerapan sila ketiga">
-            </div>
-
-            <div class="card-content">
-
+            <div class="card">
                 <div class="number">3</div>
-
-                <h3>
-                    Persatuan Indonesia
-                </h3>
-
-                <p>
-                    Menjaga persatuan dan kesatuan bangsa
-                    serta menghargai keberagaman Indonesia.
-                </p>
-
-                <ul>
-                    <li>Berteman tanpa membeda-bedakan.</li>
-                    <li>Menjaga kerukunan.</li>
-                    <li>Melaksanakan gotong royong.</li>
-                </ul>
-
+                <h3>Persatuan</h3>
+                <p>Persatuan Indonesia, menempatkan keselamatan bangsa dan negara di atas kepentingan golongan atau pribadi.</p>
             </div>
-
-        </div>
-
-
-        <!-- SILA 4 -->
-
-        <div class="card">
-
-            <div class="card-image">
-                <img src="images/sila4.jpg"
-                     alt="Contoh penerapan sila keempat">
-            </div>
-
-            <div class="card-content">
-
+            <div class="card">
                 <div class="number">4</div>
-
-                <h3>
-                    Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan
-                </h3>
-
-                <p>
-                    Mengutamakan musyawarah untuk mencapai
-                    keputusan bersama.
-                </p>
-
-                <ul>
-                    <li>Menghargai pendapat orang lain.</li>
-                    <li>Tidak memaksakan kehendak.</li>
-                    <li>Menerima hasil musyawarah.</li>
-                </ul>
-
+                <h3>Kerakyatan</h3>
+                <p>Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan.</p>
             </div>
-
-        </div>
-
-
-        <!-- SILA 5 -->
-
-        <div class="card">
-
-            <div class="card-image">
-                <img src="images/sila5.jpg"
-                     alt="Contoh penerapan sila kelima">
-            </div>
-
-            <div class="card-content">
-
+            <div class="card">
                 <div class="number">5</div>
-
-                <h3>
-                    Keadilan Sosial bagi Seluruh Rakyat Indonesia
-                </h3>
-
-                <p>
-                    Bersikap adil dan menghormati hak
-                    setiap orang.
-                </p>
-
-                <ul>
-                    <li>Bersikap adil kepada semua teman.</li>
-                    <li>Berbagi dengan orang yang membutuhkan.</li>
-                    <li>Tidak mengambil hak orang lain.</li>
-                </ul>
-
+                <h3>Keadilan</h3>
+                <p>Keadilan sosial bagi seluruh rakyat Indonesia, mewujudkan kesejahteraan dan hak yang merata.</p>
             </div>
+        </div>
+    </section>
 
+    <section id="galeri" class="slider-section">
+        <div class="section-title">
+            <h2>Galeri Foto Interaktif</h2>
+            <p>Geser ke samping untuk melihat dokumentasi kegiatan dan implementasi nilai Pancasila</p>
         </div>
 
+        <div class="slider-wrapper">
+            <button class="slider-btn prev" onclick="slideLeft()">&#10094;</button>
 
-    </div>
+            <div class="slider-container" id="sliderContainer">
+                
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=600&q=80" alt="Upacara" class="slider-img">
+                    <div class="slider-info">
+                        <span class="slider-tag">Nasionalisme</span>
+                        <h4>Upacara Hari Kesaktian Pancasila</h4>
+                        <p>Dokumentasi apel kebangsaan.</p>
+                    </div>
+                </div>
 
-</section>
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=600&q=80" alt="Gotong Royong" class="slider-img">
+                    <div class="slider-info">
+                        <span class="slider-tag">Sila ke-3</span>
+                        <h4>Aksi Gotong Royong Warga</h4>
+                        <p>Menciptakan kebersamaan.</p>
+                    </div>
+                </div>
 
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=600&q=80" alt="Musyawarah" class="slider-img">
+                    <div class="slider-info">
+                        <span class="slider-tag">Sila ke-4</span>
+                        <h4>Musyawarah Mufakat Pemuda</h4>
+                        <p>Penerapan demokrasi Pancasila.</p>
+                    </div>
+                </div>
 
-<!-- ================= CONTOH ================= -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Bakti Sosial" class="slider-img">
+                    <div class="slider-info">
+                        <span class="slider-tag">Sila ke-5</span>
+                        <h4>Bakti Sosial Keadilan Sosial</h4>
+                        <p>Berbagi kepada sesama.</p>
+                    </div>
+                </div>
 
-<section class="examples" id="contoh">
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" alt="Edukasi" class="slider-img">
+                    <div class="slider-info">
+                        <span class="slider-tag">Edukasi</span>
+                        <h4>Pendidikan Karakter Sekolah</h4>
+                        <p>Pembelajaran nilai luhur.</p>
+                    </div>
+                </div>
 
-    <div class="section-title">
+                </div>
 
-        <h2>💡 Contoh di Kehidupan Sehari-hari</h2>
-
-        <p>
-            Pancasila dapat diterapkan mulai dari
-            lingkungan terdekat kita.
-        </p>
-
-    </div>
-
-
-    <div class="example-container">
-
-
-        <div class="example-box">
-
-            <div class="icon">🙏</div>
-
-            <h3>Sila 1</h3>
-
-            <p>
-                Menghormati teman yang sedang
-                menjalankan ibadah.
-            </p>
-
+            <button class="slider-btn next" onclick="slideRight()">&#10095;</button>
         </div>
+    </section>
 
-
-        <div class="example-box">
-
-            <div class="icon">🤝</div>
-
-            <h3>Sila 2</h3>
-
-            <p>
-                Membantu teman yang sedang
-                mengalami kesulitan.
-            </p>
-
+    <section id="sejarah">
+        <div class="section-title">
+            <h2>Tonggak Sejarah Lahirnya Pancasila</h2>
+            <p>Kronologi singkat perumusan dasar negara Republik Indonesia</p>
         </div>
-
-
-        <div class="example-box">
-
-            <div class="icon">🇮🇩</div>
-
-            <h3>Sila 3</h3>
-
-            <p>
-                Menjaga persatuan dan mengikuti
-                kegiatan gotong royong.
-            </p>
-
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Peristiwa Penting</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>29 Mei - 1 Juni 1945</td>
+                        <td>Sidang Pertama BPUPKI</td>
+                        <td>Para tokoh bangsa seperti Ir. Soekarno, Moh. Yamin, dan Soepomo menyampaikan gagasan dasar negara.</td>
+                    </tr>
+                    <tr>
+                        <td>1 Juni 1945</td>
+                        <td>Lahirnya Istilah Pancasila</td>
+                        <td>Ir. Soekarno pertama kalinya memperkenalkan istilah "Pancasila" dalam pidatonya.</td>
+                    </tr>
+                    <tr>
+                        <td>18 Agustus 1945</td>
+                        <td>Pengesahan Pancasila</td>
+                        <td>PPKI mengesahkan UUD 1945 di mana Pancasila tercantum resmi di dalam Pembukaan UUD 1945 alinea keempat.</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+    </section>
 
-
-        <div class="example-box">
-
-            <div class="icon">🗣️</div>
-
-            <h3>Sila 4</h3>
-
-            <p>
-                Menyelesaikan masalah melalui
-                musyawarah.
-            </p>
-
+    <section>
+        <div class="quote-box animate-fade">
+            <h3>"Saya Indonesia, Saya Pancasila"</h3>
+            <p>Mari terus jaga persatuan, merawat keragaman, dan mengamalkan nilai-nilai luhur Pancasila dalam kehidupan sehari-hari.</p>
         </div>
+    </section>
 
+    <footer>
+        <p>&copy; 2026 Website Pendidikan Pancasila & Galeri Kebangsaan. Hak Cipta Dilindungi.</p>
+    </footer>
 
-        <div class="example-box">
+    <script>
+        const slider = document.getElementById('sliderContainer');
 
-            <div class="icon">⚖️</div>
+        function slideLeft() {
+            slider.scrollBy({ left: -330, behavior: 'smooth' });
+        }
 
-            <h3>Sila 5</h3>
-
-            <p>
-                Bersikap adil dan menghargai
-                hak orang lain.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- ================= NILAI ================= -->
-
-<section class="nilai" id="nilai">
-
-    <h2> Jadilah Pelajar yang Berkarakter Pancasila</h2>
-
-    <p>
-        Pancasila tidak hanya untuk dihafalkan,
-        tetapi juga untuk diterapkan dalam kehidupan
-        sehari-hari. Mulailah dari hal-hal sederhana
-        seperti menghargai orang lain, menjaga persatuan,
-        bermusyawarah, dan bersikap adil.
-    </p>
-
-</section>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <p><b> Pendidikan Pancasila</b></p>
-
-    <p>
-        Belajar • Memahami • Mengamalkan
-    </p>
-
-    <p>
-        © 2026 Pendidikan Pancasila
-    </p>
-
-</footer>
+        function slideRight() {
+            slider.scrollBy({ left: 330, behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
