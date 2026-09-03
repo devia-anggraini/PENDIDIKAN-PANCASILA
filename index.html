@@ -2404,6 +2404,104 @@ footer{
 
 }
 
+
+.sila-slider{
+    position:relative;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+.sila-slide{
+    position:absolute !important;
+    inset:0;
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity .6s ease, transform .7s ease;
+    transform:scale(1);
+}
+
+.sila-slide.active{
+    opacity:1;
+    z-index:1;
+}
+
+.sila-slider:hover .sila-slide.active{
+    transform:scale(1.05);
+}
+
+.sila-prev,
+.sila-next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:5;
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:50%;
+    background:rgba(0,0,0,.55);
+    color:#fff;
+    cursor:pointer;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.3s;
+    opacity:0;
+}
+
+.sila-slider:hover .sila-prev,
+.sila-slider:hover .sila-next{
+    opacity:1;
+}
+
+.sila-prev{left:12px;}
+.sila-next{right:12px;}
+
+.sila-prev:hover,
+.sila-next:hover{
+    background:var(--red);
+    transform:translateY(-50%) scale(1.08);
+}
+
+.sila-dots{
+    position:absolute;
+    left:50%;
+    bottom:14px;
+    transform:translateX(-50%);
+    z-index:6;
+    display:flex;
+    gap:7px;
+}
+
+.sila-dot{
+    width:8px;
+    height:8px;
+    border-radius:20px;
+    background:#fff;
+    opacity:.5;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.sila-dot.active{
+    width:24px;
+    opacity:1;
+}
+
+@media(max-width:650px){
+    .sila-prev,
+    .sila-next{
+        opacity:1;
+        width:36px;
+        height:36px;
+        font-size:17px;
+    }
+}
+
 </style>
 </head>
 
@@ -2573,7 +2671,7 @@ footer{
     <div class="garuda" id="garuda">
 
         <img
-            src="foto/garuda.png"
+            src="foto/garuda.jpeg"
             alt="Garuda Pancasila"
         >
 
@@ -2841,10 +2939,25 @@ footer{
 
         <div class="sila-photo">
 
-            <img
-                src="sila1.jpeg"
-                alt="Sila pertama"
-            >
+            <div class="sila-slider">
+
+                <img src="foto/sila1.jpeg"
+                     class="sila-slide active"
+                     alt="Sila 1 - Foto 1">
+
+                <img src="foto/sila1-2.jpeg"
+                     class="sila-slide"
+                     alt="Sila 1 - Foto 2">
+
+                <button class="sila-prev" type="button" aria-label="Foto sebelumnya">‹</button>
+                <button class="sila-next" type="button" aria-label="Foto berikutnya">›</button>
+
+                <div class="sila-dots">
+                    <span class="sila-dot active"></span>
+                    <span class="sila-dot"></span>
+                </div>
+
+            </div>
 
             <div class="photo-tag">
                 DOCUMENTATION / 01
@@ -2917,10 +3030,25 @@ footer{
 
         <div class="sila-photo">
 
-            <img
-                src="sila2.jpeg"
-                alt="Sila kedua"
-            >
+            <div class="sila-slider">
+
+                <img src="foto/sila2.jpeg"
+                     class="sila-slide active"
+                     alt="Sila 2 - Foto 1">
+
+                <img src="foto/sila2-2.jpeg"
+                     class="sila-slide"
+                     alt="Sila 2 - Foto 2">
+
+                <button class="sila-prev" type="button" aria-label="Foto sebelumnya">‹</button>
+                <button class="sila-next" type="button" aria-label="Foto berikutnya">›</button>
+
+                <div class="sila-dots">
+                    <span class="sila-dot active"></span>
+                    <span class="sila-dot"></span>
+                </div>
+
+            </div>
 
             <div class="photo-tag">
                 DOCUMENTATION / 02
@@ -2994,10 +3122,25 @@ footer{
 
         <div class="sila-photo">
 
-            <img
-                src="sila3.jpeg"
-                alt="Sila ketiga"
-            >
+            <div class="sila-slider">
+
+                <img src="foto/sila3.jpeg"
+                     class="sila-slide active"
+                     alt="Sila 3 - Foto 1">
+
+                <img src="foto/sila3-2.jpeg"
+                     class="sila-slide"
+                     alt="Sila 3 - Foto 2">
+
+                <button class="sila-prev" type="button" aria-label="Foto sebelumnya">‹</button>
+                <button class="sila-next" type="button" aria-label="Foto berikutnya">›</button>
+
+                <div class="sila-dots">
+                    <span class="sila-dot active"></span>
+                    <span class="sila-dot"></span>
+                </div>
+
+            </div>
 
             <div class="photo-tag">
                 DOCUMENTATION / 03
@@ -3071,10 +3214,25 @@ footer{
 
         <div class="sila-photo">
 
-            <img
-                src="sila4.jpeg"
-                alt="Sila keempat"
-            >
+            <div class="sila-slider">
+
+                <img src="foto/sila4.jpeg"
+                     class="sila-slide active"
+                     alt="Sila 4 - Foto 1">
+
+                <img src="foto/sila4-2.jpeg"
+                     class="sila-slide"
+                     alt="Sila 4 - Foto 2">
+
+                <button class="sila-prev" type="button" aria-label="Foto sebelumnya">‹</button>
+                <button class="sila-next" type="button" aria-label="Foto berikutnya">›</button>
+
+                <div class="sila-dots">
+                    <span class="sila-dot active"></span>
+                    <span class="sila-dot"></span>
+                </div>
+
+            </div>
 
             <div class="photo-tag">
                 DOCUMENTATION / 04
@@ -3147,10 +3305,25 @@ footer{
 
         <div class="sila-photo">
 
-            <img
-                src="sila5.jpeg"
-                alt="Sila kelima"
-            >
+            <div class="sila-slider">
+
+                <img src="foto/sila5.jpeg"
+                     class="sila-slide active"
+                     alt="Sila 5 - Foto 1">
+
+                <img src="foto/sila5-2.jpeg"
+                     class="sila-slide"
+                     alt="Sila 5 - Foto 2">
+
+                <button class="sila-prev" type="button" aria-label="Foto sebelumnya">‹</button>
+                <button class="sila-next" type="button" aria-label="Foto berikutnya">›</button>
+
+                <div class="sila-dots">
+                    <span class="sila-dot active"></span>
+                    <span class="sila-dot"></span>
+                </div>
+
+            </div>
 
             <div class="photo-tag">
                 DOCUMENTATION / 05
@@ -3237,7 +3410,7 @@ footer{
         <div class="activity big reveal">
 
             <img
-                src="foto/kegiatan1.jpg"
+                src="foto/kegiatan1.jpeg"
                 alt="Diskusi kelompok"
             >
 
@@ -3264,7 +3437,7 @@ footer{
         <div class="activity reveal">
 
             <img
-                src="foto/kegiatan2.jpg"
+                src="foto/kegiatan2.jpeg"
                 alt="Persiapan projek"
             >
 
@@ -3290,7 +3463,7 @@ footer{
         <div class="activity reveal">
 
             <img
-                src="foto/kegiatan3.jpg"
+                src="foto/kegiatan3.jpeg"
                 alt="Pelaksanaan projek"
             >
 
@@ -3316,7 +3489,7 @@ footer{
         <div class="activity wide reveal">
 
             <img
-                src="foto/kegiatan4.jpg"
+                src="foto/kegiatan4.jpeg"
                 alt="Momen bersama"
             >
 
@@ -3403,7 +3576,7 @@ footer{
                 <div class="member-photo">
 
                     <img
-                        src="foto/anggota1.jpg"
+                        src="foto/anggota1.jpeg"
                         alt="Anggota 1"
                     >
 
@@ -3437,7 +3610,7 @@ footer{
                 <div class="member-photo">
 
                     <img
-                        src="foto/anggota2.jpg"
+                        src="foto/anggota2.jpeg"
                         alt="Anggota 2"
                     >
 
@@ -3471,7 +3644,7 @@ footer{
                 <div class="member-photo">
 
                     <img
-                        src="foto/anggota3.jpg"
+                        src="foto/anggota3.jpeg"
                         alt="Anggota 3"
                     >
 
@@ -3505,7 +3678,7 @@ footer{
                 <div class="member-photo">
 
                     <img
-                        src="foto/anggota4.jpg"
+                        src="foto/anggota4.jpeg"
                         alt="Anggota 4"
                     >
 
@@ -3539,7 +3712,7 @@ footer{
                 <div class="member-photo">
 
                     <img
-                        src="foto/anggota5.jpg"
+                        src="foto/anggota5.jpeg"
                         alt="Anggota 5"
                     >
 
@@ -3604,7 +3777,7 @@ footer{
         <div class="gallery-item large reveal">
 
             <img
-                src="foto/foto1.jpg"
+                src="foto/foto1.jpeg"
                 alt="Foto 1"
             >
 
@@ -3624,7 +3797,7 @@ footer{
         <div class="gallery-item reveal">
 
             <img
-                src="foto/foto2.jpg"
+                src="foto/foto2.jpeg"
                 alt="Foto 2"
             >
 
@@ -3644,7 +3817,7 @@ footer{
         <div class="gallery-item reveal">
 
             <img
-                src="foto/foto3.jpg"
+                src="foto/foto3.jpeg"
                 alt="Foto 3"
             >
 
@@ -3664,7 +3837,7 @@ footer{
         <div class="gallery-item wide reveal">
 
             <img
-                src="foto/foto4.jpg"
+                src="foto/foto4.jpeg"
                 alt="Foto 4"
             >
 
@@ -3684,7 +3857,7 @@ footer{
         <div class="gallery-item reveal">
 
             <img
-                src="foto/foto5.jpg"
+                src="foto/foto5.jpeg"
                 alt="Foto 5"
             >
 
@@ -3704,7 +3877,7 @@ footer{
         <div class="gallery-item reveal">
 
             <img
-                src="foto/foto6.jpg"
+                src="foto/foto6.jpeg"
                 alt="Foto 6"
             >
 
@@ -3724,7 +3897,7 @@ footer{
         <div class="gallery-item large reveal">
 
             <img
-                src="foto/foto7.jpg"
+                src="foto/foto7.jpeg"
                 alt="Foto 7"
             >
 
@@ -3744,7 +3917,7 @@ footer{
         <div class="gallery-item reveal">
 
             <img
-                src="foto/foto8.jpg"
+                src="foto/foto8.jpeg"
                 alt="Foto 8"
             >
 
@@ -3949,6 +4122,64 @@ document
 
     });
 
+
+
+/* =========================================================
+   FOTO SILA — SLIDER OTOMATIS
+========================================================= */
+
+document.querySelectorAll(".sila-slider").forEach(slider => {
+
+    const slides = slider.querySelectorAll(".sila-slide");
+    const dots = slider.querySelectorAll(".sila-dot");
+    const next = slider.querySelector(".sila-next");
+    const prev = slider.querySelector(".sila-prev");
+
+    let currentSlide = 0;
+    let timer;
+
+    function showSlide(index){
+
+        currentSlide = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === currentSlide);
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentSlide);
+        });
+    }
+
+    function startAutoSlide(){
+        clearInterval(timer);
+        timer = setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 4000);
+    }
+
+    next.addEventListener("click", event => {
+        event.stopPropagation();
+        showSlide(currentSlide + 1);
+        startAutoSlide();
+    });
+
+    prev.addEventListener("click", event => {
+        event.stopPropagation();
+        showSlide(currentSlide - 1);
+        startAutoSlide();
+    });
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener("click", event => {
+            event.stopPropagation();
+            showSlide(i);
+            startAutoSlide();
+        });
+    });
+
+    startAutoSlide();
+});
 
 /* =========================================================
    SILA INTERACTIVE
