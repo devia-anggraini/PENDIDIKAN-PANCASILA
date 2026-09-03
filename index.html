@@ -3,582 +3,489 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendidikan Pancasila & Galeri Interaktif</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    <title>Website Kelompok Kami</title>
 
-        html {
-            scroll-behavior: smooth;
-        }
+    <link rel="stylesheet" href="style.css">
 
-        body {
-            background: #f8fafc;
-            color: #334155;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ANIMASI FADE IN SAAT SCROLL */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade {
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        /* NAVBAR */
-        nav {
-            background: #b5121b;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: background 0.3s;
-        }
-
-        .logo {
-            color: white;
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #ffd700;
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 550px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #991b1b, #b5121b, #dc2626);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 850px;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .hero h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            font-weight: 400;
-            color: #fef08a;
-        }
-
-        .hero p {
-            font-size: 17px;
-            line-height: 1.8;
-            color: #f1f5f9;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 14px 32px;
-            background: #ffd700;
-            color: #1e293b;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-4px) scale(1.03);
-            background: white;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-        }
-
-        /* SECTION */
-        section {
-            padding: 80px 8%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            color: #b5121b;
-            font-size: 36px;
-            margin-bottom: 12px;
-            font-weight: 800;
-        }
-
-        .section-title p {
-            color: #64748b;
-            font-size: 16px;
-        }
-
-        /* SILA CARD */
-        .sila-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border-top: 6px solid #b5121b;
-        }
-
-        .card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(181, 18, 27, 0.15);
-        }
-
-        .number {
-            width: 60px;
-            height: 60px;
-            background: #b5121b;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 20px;
-            font-size: 24px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(181, 18, 27, 0.3);
-            transition: transform 0.3s;
-        }
-
-        .card:hover .number {
-            transform: rotate(360deg);
-        }
-
-        .card h3 {
-            color: #b5121b;
-            font-size: 20px;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .card p {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #475569;
-        }
-
-        /* === FITUR GALERI SLIDER (BISA DIGESER DENGAN TOMBOL / MOUSE) === */
-        .slider-section {
-            background: #edf2f7;
-            position: relative;
-        }
-
-        .slider-wrapper {
-            position: relative;
-            max-width: 100%;
-            margin: 0 auto;
-        }
-
-        .slider-container {
-            display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            scrollbar-width: none; /* Hilangkan scrollbar di Firefox */
-            padding: 20px 5px;
-        }
-
-        .slider-container::-webkit-scrollbar {
-            display: none; /* Hilangkan scrollbar di Chrome/Safari */
-        }
-
-        .slider-item {
-            flex: 0 0 300px;
-            scroll-snap-align: start;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-            transition: all 0.4s ease;
-        }
-
-        .slider-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-
-        .slider-img {
-            width: 100%;
-            height: 210px;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .slider-item:hover .slider-img {
-            transform: scale(1.1);
-        }
-
-        .slider-info {
-            padding: 22px;
-        }
-
-        .slider-tag {
-            font-size: 11px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: #b5121b;
-            background: #fee2e2;
-            padding: 4px 10px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .slider-info h4 {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 6px;
-        }
-
-        .slider-info p {
-            font-size: 13px;
-            color: #64748b;
-        }
-
-        /* Tombol Navigasi Slider */
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #b5121b;
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transition: background 0.3s, transform 0.2s;
-            z-index: 10;
-        }
-
-        .slider-btn:hover {
-            background: #991b1b;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .slider-btn.prev {
-            left: -20px;
-        }
-
-        .slider-btn.next {
-            right: -20px;
-        }
-
-        /* TABEL SEJARAH */
-        .table-container {
-            overflow-x: auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 650px;
-        }
-
-        th {
-            background: #b5121b;
-            color: white;
-            padding: 18px;
-            text-align: left;
-            font-size: 15px;
-        }
-
-        td {
-            padding: 18px;
-            border-bottom: 1px solid #e2e8f0;
-            line-height: 1.6;
-            font-size: 14px;
-            color: #334155;
-        }
-
-        tr {
-            transition: background 0.2s;
-        }
-
-        tr:hover {
-            background: #fff5f5;
-        }
-
-        /* QUOTE BOX */
-        .quote-box {
-            background: linear-gradient(135deg, #b5121b, #991b1b);
-            color: white;
-            text-align: center;
-            border-radius: 24px;
-            padding: 50px 30px;
-            box-shadow: 0 15px 35px rgba(181, 18, 27, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quote-box h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .quote-box p {
-            font-size: 16px;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #0f172a;
-            color: #94a3b8;
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 14px;
-        }
-
-        footer p {
-            margin-top: 10px;
-        }
-    </style>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <nav>
-        <div class="logo">Pancasila.id</div>
-        <ul>
-            <li><a href="#beranda">Beranda</a></li>
-            <li><a href="#sila">Nilai Sila</a></li>
-            <li><a href="#galeri">Galeri Geser</a></li>
-            <li><a href="#sejarah">Sejarah</a></li>
+<!-- ================= NAVBAR ================= -->
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            KELOMPOK<span>.</span>
+        </div>
+
+        <ul class="nav-menu">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#anggota">Anggota</a></li>
+            <li><a href="#tentang">Tentang</a></li>
+            <li><a href="#kegiatan">Kegiatan</a></li>
+            <li><a href="#galeri">Galeri</a></li>
         </ul>
+
+        <button class="menu-btn" id="menuBtn">
+            ☰
+        </button>
+
     </nav>
+</header>
 
-    <section id="beranda" class="hero">
-        <div class="hero-content animate-fade">
-            <h1>Pendidikan Pancasila</h1>
-            <h2>Ideologi dan Fondasi Pemersatu Bangsa Indonesia</h2>
-            <p>Pancasila bukan sekadar hafalan, melainkan pedoman hidup bermasyarakat, berbangsa, dan bernegara untuk mewujudkan keadilan sosial bagi seluruh rakyat Indonesia.</p>
-            <a href="#galeri" class="btn">Jelajahi Galeri Foto</a>
-        </div>
-    </section>
 
-    <section id="sila">
-        <div class="section-title">
-            <h2>5 Sila Pancasila</h2>
-            <p>Makna mendalam yang terkandung dalam setiap lambang dan butir Pancasila</p>
-        </div>
-        <div class="sila-container">
-            <div class="card">
-                <div class="number">1</div>
-                <h3>Ketuhanan</h3>
-                <p>Ketuhanan Yang Maha Esa, menjunjung tinggi nilai keagamaan, moral, serta kerukunan antarumat beragama.</p>
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <p class="small-title">
+            WEBSITE TUGAS KELOMPOK
+        </p>
+
+        <h1>
+            Bersama Kita<br>
+            <span>Berkarya</span>
+        </h1>
+
+        <p>
+            Selamat datang di website kelompok kami.
+            Di sini kami memperkenalkan anggota kelompok,
+            kegiatan, serta dokumentasi selama mengerjakan tugas.
+        </p>
+
+        <a href="#anggota" class="btn">
+            Kenalan Yuk →
+        </a>
+
+    </div>
+
+    <div class="hero-decoration">
+        <div class="circle"></div>
+        <div class="circle-small"></div>
+    </div>
+
+</section>
+
+
+<!-- ================= ANGGOTA ================= -->
+
+<section class="section" id="anggota">
+
+    <div class="section-title">
+
+        <p>OUR TEAM</p>
+
+        <h2>
+            Kenalan dengan<br>
+            <span>Anggota Kelompok</span>
+        </h2>
+
+    </div>
+
+
+    <div class="member-container">
+
+        <!-- ANGGOTA 1 -->
+
+        <div class="member-card">
+
+            <div class="member-photo">
+                <img src="images/anggota1.jpg" alt="Anggota 1">
             </div>
-            <div class="card">
-                <div class="number">2</div>
-                <h3>Kemanusiaan</h3>
-                <p>Kemanusiaan yang adil dan beradab, mengakui persamaan derajat serta saling menghormati sesama manusia.</p>
+
+            <div class="member-info">
+
+                <span>ANGGOTA 01</span>
+
+                <h3>Nama Anggota 1</h3>
+
+                <p>
+                    Ketua Kelompok
+                </p>
+
             </div>
-            <div class="card">
-                <div class="number">3</div>
-                <h3>Persatuan</h3>
-                <p>Persatuan Indonesia, menempatkan keselamatan bangsa dan negara di atas kepentingan golongan atau pribadi.</p>
+
+        </div>
+
+
+        <!-- ANGGOTA 2 -->
+
+        <div class="member-card">
+
+            <div class="member-photo">
+                <img src="images/anggota2.jpg" alt="Anggota 2">
             </div>
-            <div class="card">
-                <div class="number">4</div>
-                <h3>Kerakyatan</h3>
-                <p>Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan.</p>
+
+            <div class="member-info">
+
+                <span>ANGGOTA 02</span>
+
+                <h3>Nama Anggota 2</h3>
+
+                <p>
+                    Anggota
+                </p>
+
             </div>
-            <div class="card">
-                <div class="number">5</div>
-                <h3>Keadilan</h3>
-                <p>Keadilan sosial bagi seluruh rakyat Indonesia, mewujudkan kesejahteraan dan hak yang merata.</p>
+
+        </div>
+
+
+        <!-- ANGGOTA 3 -->
+
+        <div class="member-card">
+
+            <div class="member-photo">
+                <img src="images/anggota3.jpg" alt="Anggota 3">
+            </div>
+
+            <div class="member-info">
+
+                <span>ANGGOTA 03</span>
+
+                <h3>Nama Anggota 3</h3>
+
+                <p>
+                    Anggota
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ANGGOTA 4 -->
+
+        <div class="member-card">
+
+            <div class="member-photo">
+                <img src="images/anggota4.jpg" alt="Anggota 4">
+            </div>
+
+            <div class="member-info">
+
+                <span>ANGGOTA 04</span>
+
+                <h3>Nama Anggota 4</h3>
+
+                <p>
+                    Anggota
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TENTANG ================= -->
+
+<section class="about" id="tentang">
+
+    <div class="about-image">
+
+        <img src="images/kegiatan1.jpg" alt="Kegiatan kelompok">
+
+    </div>
+
+
+    <div class="about-content">
+
+        <p class="small-title">
+            TENTANG KELOMPOK
+        </p>
+
+        <h2>
+            Satu Kelompok,<br>
+            <span>Satu Tujuan.</span>
+        </h2>
+
+        <p>
+            Website ini dibuat sebagai dokumentasi tugas kelompok
+            kami. Setiap anggota memiliki peran masing-masing
+            dalam menyelesaikan tugas yang diberikan.
+        </p>
+
+        <p>
+            Melalui kerja sama, komunikasi, dan pembagian tugas
+            yang baik, kami berusaha menyelesaikan proyek ini
+            dengan maksimal.
+        </p>
+
+        <div class="about-stats">
+
+            <div>
+                <strong>4+</strong>
+                <span>Anggota</span>
+            </div>
+
+            <div>
+                <strong>10+</strong>
+                <span>Kegiatan</span>
+            </div>
+
+            <div>
+                <strong>100%</strong>
+                <span>Kerja Sama</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= KEGIATAN ================= -->
+
+<section class="section activities" id="kegiatan">
+
+    <div class="section-title">
+
+        <p>OUR ACTIVITIES</p>
+
+        <h2>
+            Kegiatan<br>
+            <span>Kelompok Kami</span>
+        </h2>
+
+    </div>
+
+
+    <div class="activity-container">
+
+        <div class="activity-card">
+
+            <div class="activity-number">
+                01
+            </div>
+
+            <h3>Diskusi Kelompok</h3>
+
+            <p>
+                Berdiskusi untuk menentukan konsep,
+                pembagian tugas, dan persiapan proyek.
+            </p>
+
+        </div>
+
+
+        <div class="activity-card">
+
+            <div class="activity-number">
+                02
+            </div>
+
+            <h3>Pengerjaan Tugas</h3>
+
+            <p>
+                Setiap anggota mengerjakan bagian
+                masing-masing sesuai pembagian tugas.
+            </p>
+
+        </div>
+
+
+        <div class="activity-card">
+
+            <div class="activity-number">
+                03
+            </div>
+
+            <h3>Presentasi</h3>
+
+            <p>
+                Mempresentasikan hasil kerja kelompok
+                di depan kelas.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= GALERI ================= -->
+
+<section class="section gallery-section" id="galeri">
+
+    <div class="section-title">
+
+        <p>DOCUMENTATION</p>
+
+        <h2>
+            Galeri<br>
+            <span>Kegiatan Kami</span>
+        </h2>
+
+        <p class="gallery-description">
+            Kumpulan dokumentasi kegiatan kelompok kami.
+        </p>
+
+    </div>
+
+
+    <!-- FILTER -->
+
+    <div class="filter-container">
+
+        <button class="filter-btn active" data-filter="all">
+            Semua
+        </button>
+
+        <button class="filter-btn" data-filter="diskusi">
+            Diskusi
+        </button>
+
+        <button class="filter-btn" data-filter="pengerjaan">
+            Pengerjaan
+        </button>
+
+        <button class="filter-btn" data-filter="presentasi">
+            Presentasi
+        </button>
+
+    </div>
+
+
+    <!-- GALERI -->
+
+    <div class="gallery">
+
+        <div class="gallery-item diskusi">
+            <img src="images/kegiatan1.jpg" alt="Diskusi kelompok">
+            <div class="gallery-overlay">
+                <span>Diskusi</span>
+                <h3>Diskusi Kelompok</h3>
             </div>
         </div>
-    </section>
 
-    <section id="galeri" class="slider-section">
-        <div class="section-title">
-            <h2>Galeri Foto Interaktif</h2>
-            <p>Geser ke samping untuk melihat dokumentasi kegiatan dan implementasi nilai Pancasila</p>
+
+        <div class="gallery-item pengerjaan">
+            <img src="images/kegiatan2.jpg" alt="Pengerjaan tugas">
+            <div class="gallery-overlay">
+                <span>Pengerjaan</span>
+                <h3>Mengerjakan Tugas</h3>
+            </div>
         </div>
 
-        <div class="slider-wrapper">
-            <button class="slider-btn prev" onclick="slideLeft()">&#10094;</button>
 
-            <div class="slider-container" id="sliderContainer">
-                
-                <div class="slider-item">
-                    <img src=" alt="Upacara" class="slider-img">
-                    <div class="slider-info">
-                        <span class="slider-tag">Nasionalisme</span>
-                        <h4>Upacara Hari Kesaktian Pancasila</h4>
-                        <p>Dokumentasi apel kebangsaan.</p>
-                    </div>
-                </div>
-
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=600&q=80" alt="Gotong Royong" class="slider-img">
-                    <div class="slider-info">
-                        <span class="slider-tag">Sila ke-3</span>
-                        <h4>Aksi Gotong Royong Warga</h4>
-                        <p>Menciptakan kebersamaan.</p>
-                    </div>
-                </div>
-
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=600&q=80" alt="Musyawarah" class="slider-img">
-                    <div class="slider-info">
-                        <span class="slider-tag">Sila ke-4</span>
-                        <h4>Musyawarah Mufakat Pemuda</h4>
-                        <p>Penerapan demokrasi Pancasila.</p>
-                    </div>
-                </div>
-
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Bakti Sosial" class="slider-img">
-                    <div class="slider-info">
-                        <span class="slider-tag">Sila ke-5</span>
-                        <h4>Bakti Sosial Keadilan Sosial</h4>
-                        <p>Berbagi kepada sesama.</p>
-                    </div>
-                </div>
-
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" alt="Edukasi" class="slider-img">
-                    <div class="slider-info">
-                        <span class="slider-tag">Edukasi</span>
-                        <h4>Pendidikan Karakter Sekolah</h4>
-                        <p>Pembelajaran nilai luhur.</p>
-                    </div>
-                </div>
-
-                </div>
-
-            <button class="slider-btn next" onclick="slideRight()">&#10095;</button>
+        <div class="gallery-item pengerjaan">
+            <img src="images/kegiatan3.jpg" alt="Kegiatan kelompok">
+            <div class="gallery-overlay">
+                <span>Pengerjaan</span>
+                <h3>Kerja Kelompok</h3>
+            </div>
         </div>
-    </section>
 
-    <section id="sejarah">
-        <div class="section-title">
-            <h2>Tonggak Sejarah Lahirnya Pancasila</h2>
-            <p>Kronologi singkat perumusan dasar negara Republik Indonesia</p>
+
+        <div class="gallery-item presentasi">
+            <img src="images/kegiatan4.jpg" alt="Presentasi">
+            <div class="gallery-overlay">
+                <span>Presentasi</span>
+                <h3>Presentasi Tugas</h3>
+            </div>
         </div>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tanggal</th>
-                        <th>Peristiwa Penting</th>
-                        <th>Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>29 Mei - 1 Juni 1945</td>
-                        <td>Sidang Pertama BPUPKI</td>
-                        <td>Para tokoh bangsa seperti Ir. Soekarno, Moh. Yamin, dan Soepomo menyampaikan gagasan dasar negara.</td>
-                    </tr>
-                    <tr>
-                        <td>1 Juni 1945</td>
-                        <td>Lahirnya Istilah Pancasila</td>
-                        <td>Ir. Soekarno pertama kalinya memperkenalkan istilah "Pancasila" dalam pidatonya.</td>
-                    </tr>
-                    <tr>
-                        <td>18 Agustus 1945</td>
-                        <td>Pengesahan Pancasila</td>
-                        <td>PPKI mengesahkan UUD 1945 di mana Pancasila tercantum resmi di dalam Pembukaan UUD 1945 alinea keempat.</td>
-                    </tr>
-                </tbody>
-            </table>
+
+
+        <!-- TAMBAHKAN FOTO LAGI DI SINI -->
+
+        <div class="gallery-item diskusi">
+            <img src="images/kegiatan5.jpg" alt="Kegiatan">
+            <div class="gallery-overlay">
+                <span>Diskusi</span>
+                <h3>Kegiatan Kelompok</h3>
+            </div>
         </div>
-    </section>
 
-    <section>
-        <div class="quote-box animate-fade">
-            <h3>"Saya Indonesia, Saya Pancasila"</h3>
-            <p>Mari terus jaga persatuan, merawat keragaman, dan mengamalkan nilai-nilai luhur Pancasila dalam kehidupan sehari-hari.</p>
+
+        <div class="gallery-item pengerjaan">
+            <img src="images/kegiatan6.jpg" alt="Kegiatan">
+            <div class="gallery-overlay">
+                <span>Pengerjaan</span>
+                <h3>Proses Pengerjaan</h3>
+            </div>
         </div>
-    </section>
 
-    <footer>
-        <p>&copy; 2026 Website Pendidikan Pancasila & Galeri Kebangsaan. Hak Cipta Dilindungi.</p>
-    </footer>
+    </div>
 
-    <script>
-        const slider = document.getElementById('sliderContainer');
+</section>
 
-        function slideLeft() {
-            slider.scrollBy({ left: -330, behavior: 'smooth' });
-        }
 
-        function slideRight() {
-            slider.scrollBy({ left: 330, behavior: 'smooth' });
-        }
-    </script>
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <div>
+
+        <p>OUR JOURNEY</p>
+
+        <h2>
+            Setiap proses<br>
+            punya cerita.
+        </h2>
+
+        <p>
+            Terima kasih sudah mengunjungi website
+            kelompok kami.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        KELOMPOK<span>.</span>
+    </div>
+
+    <p>
+        © 2026 Website Tugas Kelompok.
+        Dibuat bersama dengan penuh kreativitas.
+    </p>
+
+</footer>
+
+
+<!-- ================= LIGHTBOX ================= -->
+
+<div class="lightbox" id="lightbox">
+
+    <button class="close-lightbox" id="closeLightbox">
+        ×
+    </button>
+
+    <button class="prev" id="prev">
+        ‹
+    </button>
+
+    <img id="lightboxImage" src="" alt="Preview">
+
+    <button class="next" id="next">
+        ›
+    </button>
+
+</div>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
