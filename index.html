@@ -4,40 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Website Kelompok Kami</title>
+    <title>SUARA KITA | Tugas PPKn</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+<!-- ================= LOADING ================= -->
+
+<div class="loader" id="loader">
+    <div class="loader-text">
+        <span>S</span>
+        <span>U</span>
+        <span>A</span>
+        <span>R</span>
+        <span>A</span>
+        <span> </span>
+        <span>K</span>
+        <span>I</span>
+        <span>T</span>
+        <span>A</span>
+    </div>
+</div>
+
+
 <!-- ================= NAVBAR ================= -->
 
-<header>
+<header id="header">
+
     <nav class="navbar">
 
-        <div class="logo">
-            KELOMPOK<span>.</span>
+        <a href="#home" class="logo">
+            SUARA<span>KITA</span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+
+            <a href="#home">Home</a>
+            <a href="#about">Tentang</a>
+            <a href="#anggota">Anggota</a>
+            <a href="#nilai">Pancasila</a>
+            <a href="#kegiatan">Kegiatan</a>
+            <a href="#galeri">Galeri</a>
+
         </div>
 
-        <ul class="nav-menu">
-            <li><a href="#home">Beranda</a></li>
-            <li><a href="#anggota">Anggota</a></li>
-            <li><a href="#tentang">Tentang</a></li>
-            <li><a href="#kegiatan">Kegiatan</a></li>
-            <li><a href="#galeri">Galeri</a></li>
-        </ul>
-
         <button class="menu-btn" id="menuBtn">
-            ☰
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
 
     </nav>
+
 </header>
 
 
@@ -45,32 +70,128 @@
 
 <section class="hero" id="home">
 
+    <div class="hero-image">
+
+        <img
+            src="https://images.unsplash.com/photo-1538356349510-fd0b8f6e0e6f?auto=format&fit=crop&w=2000&q=85"
+            alt="Indonesia">
+
+    </div>
+
+    <div class="hero-overlay"></div>
+
     <div class="hero-content">
 
-        <p class="small-title">
-            WEBSITE TUGAS KELOMPOK
-        </p>
+        <div class="hero-label">
+            <span></span>
+            PROYEK PPKn • 2026
+        </div>
 
         <h1>
-            Bersama Kita<br>
-            <span>Berkarya</span>
+            SUARA<br>
+            <em>KITA.</em>
         </h1>
 
-        <p>
-            Selamat datang di website kelompok kami.
-            Di sini kami memperkenalkan anggota kelompok,
-            kegiatan, serta dokumentasi selama mengerjakan tugas.
+        <p class="hero-subtitle">
+            Bersatu dalam perbedaan.<br>
+            Bergerak bersama untuk Indonesia.
         </p>
 
-        <a href="#anggota" class="btn">
-            Kenalan Yuk →
+        <a href="#about" class="hero-button">
+            <span>Jelajahi Cerita Kami</span>
+            <b>↓</b>
         </a>
 
     </div>
 
-    <div class="hero-decoration">
-        <div class="circle"></div>
-        <div class="circle-small"></div>
+    <div class="hero-bottom">
+
+        <div>
+            <strong>01</strong>
+            <span>IDENTITAS</span>
+        </div>
+
+        <div>
+            <strong>02</strong>
+            <span>NILAI PANCASILA</span>
+        </div>
+
+        <div>
+            <strong>03</strong>
+            <span>AKSI NYATA</span>
+        </div>
+
+    </div>
+
+    <div class="scroll-text">
+        SCROLL TO EXPLORE ↓
+    </div>
+
+</section>
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="intro" id="about">
+
+    <div class="intro-number">
+        01
+    </div>
+
+    <div class="intro-title">
+
+        <p>SIAPA KAMI?</p>
+
+        <h2>
+            Berbeda bukan<br>
+            alasan untuk <span>terpisah.</span>
+        </h2>
+
+    </div>
+
+    <div class="intro-text">
+
+        <p>
+            Kami adalah sekelompok pelajar yang belajar bahwa
+            keberagaman bukanlah penghalang untuk bekerja sama.
+            Justru dari perbedaan, kami menemukan cara untuk
+            saling melengkapi.
+        </p>
+
+        <p>
+            Melalui tugas PPKn ini, kami mencoba menerapkan
+            nilai-nilai Pancasila dalam kehidupan sehari-hari,
+            mulai dari kerja sama, musyawarah, toleransi,
+            hingga kepedulian terhadap lingkungan sekitar.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="stats">
+
+    <div class="stat">
+        <strong data-target="5">0</strong>
+        <span>ANGGOTA</span>
+    </div>
+
+    <div class="stat">
+        <strong data-target="3">0</strong>
+        <span>NILAI UTAMA</span>
+    </div>
+
+    <div class="stat">
+        <strong data-target="10">0</strong>
+        <span>KEGIATAN</span>
+    </div>
+
+    <div class="stat">
+        <strong data-target="100">0</strong>
+        <span>% KERJA SAMA</span>
     </div>
 
 </section>
@@ -78,168 +199,329 @@
 
 <!-- ================= ANGGOTA ================= -->
 
-<section class="section" id="anggota">
+<section class="members" id="anggota">
 
-    <div class="section-title">
+    <div class="section-heading">
 
-        <p>OUR TEAM</p>
+        <div>
+            <p>OUR TEAM / 02</p>
 
-        <h2>
-            Kenalan dengan<br>
-            <span>Anggota Kelompok</span>
-        </h2>
+            <h2>
+                Kenali<br>
+                <span>Suara Kami.</span>
+            </h2>
+        </div>
+
+        <p class="heading-description">
+            Setiap orang memiliki peran.
+            Setiap peran memiliki arti.
+        </p>
 
     </div>
 
 
-    <div class="member-container">
+    <div class="member-grid">
 
-        <!-- ANGGOTA 1 -->
 
-        <div class="member-card">
+        <!-- MEMBER 1 -->
 
-            <div class="member-photo">
-                <img src="images/anggota1.jpg" alt="Anggota 1">
+        <article class="member-card">
+
+            <div class="member-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=900&q=80"
+                    alt="Anggota 1">
+
+                <div class="member-number">
+                    01
+                </div>
+
             </div>
 
             <div class="member-info">
 
-                <span>ANGGOTA 01</span>
+                <p>KETUA KELOMPOK</p>
 
-                <h3>Nama Anggota 1</h3>
+                <h3>Nama Anggota 01</h3>
 
-                <p>
-                    Ketua Kelompok
-                </p>
+                <span>Koordinator & Pemimpin</span>
 
             </div>
 
-        </div>
+        </article>
 
 
-        <!-- ANGGOTA 2 -->
+        <!-- MEMBER 2 -->
 
-        <div class="member-card">
+        <article class="member-card">
 
-            <div class="member-photo">
-                <img src="images/anggota2.jpg" alt="Anggota 2">
-            </div>
+            <div class="member-image">
 
-            <div class="member-info">
+                <img
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80"
+                    alt="Anggota 2">
 
-                <span>ANGGOTA 02</span>
+                <div class="member-number">
+                    02
+                </div>
 
-                <h3>Nama Anggota 2</h3>
-
-                <p>
-                    Anggota
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- ANGGOTA 3 -->
-
-        <div class="member-card">
-
-            <div class="member-photo">
-                <img src="images/anggota3.jpg" alt="Anggota 3">
             </div>
 
             <div class="member-info">
 
-                <span>ANGGOTA 03</span>
+                <p>ANGGOTA</p>
 
-                <h3>Nama Anggota 3</h3>
+                <h3>Nama Anggota 02</h3>
 
-                <p>
-                    Anggota
-                </p>
+                <span>Dokumentasi</span>
 
             </div>
 
-        </div>
+        </article>
 
 
-        <!-- ANGGOTA 4 -->
+        <!-- MEMBER 3 -->
 
-        <div class="member-card">
+        <article class="member-card">
 
-            <div class="member-photo">
-                <img src="images/anggota4.jpg" alt="Anggota 4">
+            <div class="member-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80"
+                    alt="Anggota 3">
+
+                <div class="member-number">
+                    03
+                </div>
+
             </div>
 
             <div class="member-info">
 
-                <span>ANGGOTA 04</span>
+                <p>ANGGOTA</p>
 
-                <h3>Nama Anggota 4</h3>
+                <h3>Nama Anggota 03</h3>
 
-                <p>
-                    Anggota
-                </p>
+                <span>Materi & Riset</span>
 
             </div>
 
-        </div>
+        </article>
+
+
+        <!-- MEMBER 4 -->
+
+        <article class="member-card">
+
+            <div class="member-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=80"
+                    alt="Anggota 4">
+
+                <div class="member-number">
+                    04
+                </div>
+
+            </div>
+
+            <div class="member-info">
+
+                <p>ANGGOTA</p>
+
+                <h3>Nama Anggota 04</h3>
+
+                <span>Desain & Kreatif</span>
+
+            </div>
+
+        </article>
+
+
+        <!-- MEMBER 5 -->
+
+        <article class="member-card">
+
+            <div class="member-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?auto=format&fit=crop&w=900&q=80"
+                    alt="Anggota 5">
+
+                <div class="member-number">
+                    05
+                </div>
+
+            </div>
+
+            <div class="member-info">
+
+                <p>ANGGOTA</p>
+
+                <h3>Nama Anggota 05</h3>
+
+                <span>Presentasi</span>
+
+            </div>
+
+        </article>
+
 
     </div>
 
 </section>
 
 
-<!-- ================= TENTANG ================= -->
+<!-- ================= QUOTE ================= -->
 
-<section class="about" id="tentang">
+<section class="quote-section">
 
-    <div class="about-image">
+    <div class="quote-mark">
+        “
+    </div>
 
-        <img src="images/kegiatan1.jpg" alt="Kegiatan kelompok">
+    <blockquote>
+        Persatuan bukan berarti<br>
+        harus menjadi <em>sama.</em>
+    </blockquote>
+
+    <p>
+        — Semangat Bhinneka Tunggal Ika
+    </p>
+
+</section>
+
+
+<!-- ================= PANCASILA ================= -->
+
+<section class="values" id="nilai">
+
+    <div class="section-heading light">
+
+        <div>
+
+            <p>PANCASILA / 03</p>
+
+            <h2>
+                Lima dasar,<br>
+                <span>Satu Indonesia.</span>
+            </h2>
+
+        </div>
+
+        <p class="heading-description">
+            Nilai yang kami coba terapkan
+            dalam kehidupan sehari-hari.
+        </p>
 
     </div>
 
 
-    <div class="about-content">
+    <div class="pancasila-grid">
 
-        <p class="small-title">
-            TENTANG KELOMPOK
-        </p>
 
-        <h2>
-            Satu Kelompok,<br>
-            <span>Satu Tujuan.</span>
-        </h2>
+        <div class="pancasila-card">
 
-        <p>
-            Website ini dibuat sebagai dokumentasi tugas kelompok
-            kami. Setiap anggota memiliki peran masing-masing
-            dalam menyelesaikan tugas yang diberikan.
-        </p>
+            <span>01</span>
 
-        <p>
-            Melalui kerja sama, komunikasi, dan pembagian tugas
-            yang baik, kami berusaha menyelesaikan proyek ini
-            dengan maksimal.
-        </p>
-
-        <div class="about-stats">
-
-            <div>
-                <strong>4+</strong>
-                <span>Anggota</span>
+            <div class="sila-symbol">
+                ★
             </div>
 
-            <div>
-                <strong>10+</strong>
-                <span>Kegiatan</span>
+            <h3>
+                Ketuhanan<br>
+                Yang Maha Esa
+            </h3>
+
+            <p>
+                Menghormati keyakinan dan kepercayaan
+                setiap orang.
+            </p>
+
+        </div>
+
+
+        <div class="pancasila-card">
+
+            <span>02</span>
+
+            <div class="sila-symbol">
+                ♡
             </div>
 
-            <div>
-                <strong>100%</strong>
-                <span>Kerja Sama</span>
+            <h3>
+                Kemanusiaan<br>
+                yang Adil dan Beradab
+            </h3>
+
+            <p>
+                Menghargai sesama dan memperlakukan
+                semua orang dengan baik.
+            </p>
+
+        </div>
+
+
+        <div class="pancasila-card">
+
+            <span>03</span>
+
+            <div class="sila-symbol">
+                ◉
             </div>
+
+            <h3>
+                Persatuan<br>
+                Indonesia
+            </h3>
+
+            <p>
+                Menjaga kebersamaan meskipun memiliki
+                perbedaan.
+            </p>
+
+        </div>
+
+
+        <div class="pancasila-card">
+
+            <span>04</span>
+
+            <div class="sila-symbol">
+                ≋
+            </div>
+
+            <h3>
+                Kerakyatan yang Dipimpin
+                oleh Hikmat Kebijaksanaan
+            </h3>
+
+            <p>
+                Menyelesaikan masalah melalui
+                musyawarah dan mufakat.
+            </p>
+
+        </div>
+
+
+        <div class="pancasila-card">
+
+            <span>05</span>
+
+            <div class="sila-symbol">
+                ✦
+            </div>
+
+            <h3>
+                Keadilan Sosial<br>
+                bagi Seluruh Rakyat
+            </h3>
+
+            <p>
+                Bersikap adil dan peduli terhadap
+                orang-orang di sekitar.
+            </p>
 
         </div>
 
@@ -250,68 +532,146 @@
 
 <!-- ================= KEGIATAN ================= -->
 
-<section class="section activities" id="kegiatan">
+<section class="activities" id="kegiatan">
 
-    <div class="section-title">
+    <div class="section-heading">
 
-        <p>OUR ACTIVITIES</p>
+        <div>
 
-        <h2>
-            Kegiatan<br>
-            <span>Kelompok Kami</span>
-        </h2>
+            <p>OUR JOURNEY / 04</p>
+
+            <h2>
+                Dari ide<br>
+                menjadi <span>aksi.</span>
+            </h2>
+
+        </div>
 
     </div>
 
 
-    <div class="activity-container">
+    <div class="timeline">
 
-        <div class="activity-card">
 
-            <div class="activity-number">
+        <div class="timeline-item">
+
+            <div class="timeline-dot">
                 01
             </div>
 
-            <h3>Diskusi Kelompok</h3>
+            <div class="timeline-content">
 
-            <p>
-                Berdiskusi untuk menentukan konsep,
-                pembagian tugas, dan persiapan proyek.
-            </p>
+                <p>TAHAP 01</p>
+
+                <h3>Menentukan Ide</h3>
+
+                <span>
+                    Kami berdiskusi menentukan tema
+                    dan konsep tugas PPKn.
+                </span>
+
+            </div>
+
+            <div class="timeline-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=80"
+                    alt="Diskusi">
+
+            </div>
 
         </div>
 
 
-        <div class="activity-card">
+        <div class="timeline-item reverse">
 
-            <div class="activity-number">
+            <div class="timeline-dot">
                 02
             </div>
 
-            <h3>Pengerjaan Tugas</h3>
+            <div class="timeline-content">
 
-            <p>
-                Setiap anggota mengerjakan bagian
-                masing-masing sesuai pembagian tugas.
-            </p>
+                <p>TAHAP 02</p>
+
+                <h3>Musyawarah</h3>
+
+                <span>
+                    Setiap anggota menyampaikan pendapat
+                    dan kami mengambil keputusan bersama.
+                </span>
+
+            </div>
+
+            <div class="timeline-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80"
+                    alt="Musyawarah">
+
+            </div>
 
         </div>
 
 
-        <div class="activity-card">
+        <div class="timeline-item">
 
-            <div class="activity-number">
+            <div class="timeline-dot">
                 03
             </div>
 
-            <h3>Presentasi</h3>
+            <div class="timeline-content">
 
-            <p>
-                Mempresentasikan hasil kerja kelompok
-                di depan kelas.
-            </p>
+                <p>TAHAP 03</p>
+
+                <h3>Mengerjakan Bersama</h3>
+
+                <span>
+                    Kami membagi tugas dan saling membantu
+                    untuk menyelesaikan proyek.
+                </span>
+
+            </div>
+
+            <div class="timeline-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80"
+                    alt="Kerja kelompok">
+
+            </div>
 
         </div>
+
+
+        <div class="timeline-item reverse">
+
+            <div class="timeline-dot">
+                04
+            </div>
+
+            <div class="timeline-content">
+
+                <p>TAHAP 04</p>
+
+                <h3>Presentasi</h3>
+
+                <span>
+                    Hasil kerja kami dipresentasikan sebagai
+                    bentuk tanggung jawab bersama.
+                </span>
+
+            </div>
+
+            <div class="timeline-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1000&q=80"
+                    alt="Presentasi">
+
+            </div>
+
+        </div>
+
 
     </div>
 
@@ -320,127 +680,140 @@
 
 <!-- ================= GALERI ================= -->
 
-<section class="section gallery-section" id="galeri">
+<section class="gallery-section" id="galeri">
 
-    <div class="section-title">
+    <div class="section-heading">
 
-        <p>DOCUMENTATION</p>
+        <div>
 
-        <h2>
-            Galeri<br>
-            <span>Kegiatan Kami</span>
-        </h2>
+            <p>DOCUMENTATION / 05</p>
 
-        <p class="gallery-description">
-            Kumpulan dokumentasi kegiatan kelompok kami.
+            <h2>
+                Cerita kami<br>
+                dalam <span>frame.</span>
+            </h2>
+
+        </div>
+
+        <p class="heading-description">
+            Klik foto untuk melihatnya
+            dalam ukuran penuh.
         </p>
 
     </div>
 
 
-    <!-- FILTER -->
-
-    <div class="filter-container">
-
-        <button class="filter-btn active" data-filter="all">
-            Semua
-        </button>
-
-        <button class="filter-btn" data-filter="diskusi">
-            Diskusi
-        </button>
-
-        <button class="filter-btn" data-filter="pengerjaan">
-            Pengerjaan
-        </button>
-
-        <button class="filter-btn" data-filter="presentasi">
-            Presentasi
-        </button>
-
-    </div>
-
-
-    <!-- GALERI -->
-
     <div class="gallery">
 
-        <div class="gallery-item diskusi">
-            <img src="images/kegiatan1.jpg" alt="Diskusi kelompok">
-            <div class="gallery-overlay">
-                <span>Diskusi</span>
-                <h3>Diskusi Kelompok</h3>
+
+        <div class="gallery-item big">
+
+            <img
+                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85"
+                alt="Kegiatan 1">
+
+            <div class="gallery-caption">
+                <span>01 / TOGETHER</span>
+                <h3>Bersama dalam proses</h3>
             </div>
+
         </div>
 
 
-        <div class="gallery-item pengerjaan">
-            <img src="images/kegiatan2.jpg" alt="Pengerjaan tugas">
-            <div class="gallery-overlay">
-                <span>Pengerjaan</span>
-                <h3>Mengerjakan Tugas</h3>
+        <div class="gallery-item">
+
+            <img
+                src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=85"
+                alt="Kegiatan 2">
+
+            <div class="gallery-caption">
+                <span>02 / TEAM</span>
+                <h3>Kebersamaan</h3>
             </div>
+
         </div>
 
 
-        <div class="gallery-item pengerjaan">
-            <img src="images/kegiatan3.jpg" alt="Kegiatan kelompok">
-            <div class="gallery-overlay">
-                <span>Pengerjaan</span>
-                <h3>Kerja Kelompok</h3>
+        <div class="gallery-item">
+
+            <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=85"
+                alt="Kegiatan 3">
+
+            <div class="gallery-caption">
+                <span>03 / DISCUSSION</span>
+                <h3>Musyawarah</h3>
             </div>
+
         </div>
 
 
-        <div class="gallery-item presentasi">
-            <img src="images/kegiatan4.jpg" alt="Presentasi">
-            <div class="gallery-overlay">
-                <span>Presentasi</span>
-                <h3>Presentasi Tugas</h3>
+        <div class="gallery-item">
+
+            <img
+                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=85"
+                alt="Kegiatan 4">
+
+            <div class="gallery-caption">
+                <span>04 / PROJECT</span>
+                <h3>Proses pengerjaan</h3>
             </div>
+
         </div>
 
 
-        <!-- TAMBAHKAN FOTO LAGI DI SINI -->
+        <div class="gallery-item big">
 
-        <div class="gallery-item diskusi">
-            <img src="images/kegiatan5.jpg" alt="Kegiatan">
-            <div class="gallery-overlay">
-                <span>Diskusi</span>
-                <h3>Kegiatan Kelompok</h3>
+            <img
+                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=85"
+                alt="Kegiatan 5">
+
+            <div class="gallery-caption">
+                <span>05 / PRESENTATION</span>
+                <h3>Berani menyampaikan</h3>
             </div>
+
         </div>
 
 
-        <div class="gallery-item pengerjaan">
-            <img src="images/kegiatan6.jpg" alt="Kegiatan">
-            <div class="gallery-overlay">
-                <span>Pengerjaan</span>
-                <h3>Proses Pengerjaan</h3>
+        <div class="gallery-item">
+
+            <img
+                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=85"
+                alt="Kegiatan 6">
+
+            <div class="gallery-caption">
+                <span>06 / MEMORY</span>
+                <h3>Kenangan bersama</h3>
             </div>
+
         </div>
+
 
     </div>
 
 </section>
 
 
-<!-- ================= CTA ================= -->
+<!-- ================= FINAL ================= -->
 
-<section class="cta">
+<section class="final-section">
 
-    <div>
+    <div class="final-content">
 
-        <p>OUR JOURNEY</p>
+        <p>THE END IS JUST A BEGINNING</p>
 
         <h2>
-            Setiap proses<br>
-            punya cerita.
+            Satu suara.<br>
+            <span>Satu Indonesia.</span>
         </h2>
 
-        <p>
-            Terima kasih sudah mengunjungi website
-            kelompok kami.
+        <div class="red-line"></div>
+
+        <p class="final-text">
+            Karena Indonesia bukan tentang menjadi sama,
+            tetapi tentang bagaimana kita bisa tetap
+            bersama meskipun berbeda.
         </p>
 
     </div>
@@ -452,14 +825,29 @@
 
 <footer>
 
-    <div class="footer-logo">
-        KELOMPOK<span>.</span>
+    <div class="footer-top">
+
+        <div class="footer-logo">
+            SUARA<span>KITA</span>
+        </div>
+
+        <div class="footer-social">
+            TUGAS PPKn • 2026
+        </div>
+
     </div>
 
-    <p>
-        © 2026 Website Tugas Kelompok.
-        Dibuat bersama dengan penuh kreativitas.
-    </p>
+    <div class="footer-bottom">
+
+        <p>
+            Dibuat oleh Kelompok ______
+        </p>
+
+        <p>
+            Bhinneka Tunggal Ika 🇮🇩
+        </p>
+
+    </div>
 
 </footer>
 
@@ -468,17 +856,21 @@
 
 <div class="lightbox" id="lightbox">
 
-    <button class="close-lightbox" id="closeLightbox">
+    <button class="lightbox-close" id="closeLightbox">
         ×
     </button>
 
-    <button class="prev" id="prev">
+    <button class="lightbox-prev" id="prev">
         ‹
     </button>
 
-    <img id="lightboxImage" src="" alt="Preview">
+    <img id="lightboxImg" src="" alt="Preview">
 
-    <button class="next" id="next">
+    <div class="lightbox-info" id="lightboxInfo">
+        Foto
+    </div>
+
+    <button class="lightbox-next" id="next">
         ›
     </button>
 
